@@ -15,9 +15,9 @@ Everything you need to get started and become a part of our global movement is l
 
 ## Getting started
 
-* [Ordering your board](Board)
+* [Ordering your board](https://github.com/appsmonkey/CityOSAir/wiki/Board)
 
-* [3D printing your enclosure] (Enclosure)
+* [3D printing your enclosure] (https://github.com/appsmonkey/CityOSAir/wiki/Enclosure)
 
-* [Setting up the device] (Setup)
+* [Setting up the device] (https://github.com/appsmonkey/CityOSAir/wiki/Setup)
 
