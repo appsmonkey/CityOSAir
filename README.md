@@ -1,6 +1,6 @@
 # CityOSAir
 
-W**elcome to the CityOSAir wiki!**
+W**elcome to the CityOSAir github!**
 
 ![](https://github.com/appsmonkey/CityOSAir/blob/master/3Ddesign/fbthumb.png)
 
