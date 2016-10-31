@@ -1,0 +1,787 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		77065DF11D74460B00960AA5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77065DF01D74460B00960AA5 /* SettingsViewController.swift */; };
+		77065DF31D744A3600960AA5 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77065DF21D744A3600960AA5 /* GraphViewController.swift */; };
+		77065E0D1D7450C700960AA5 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77065E0C1D7450C700960AA5 /* ChartView.swift */; };
+		7713ADB71DC67F3B004EFC0B /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713AD9D1DC67F3B004EFC0B /* ESP_ByteUtil.m */; };
+		7713ADB81DC67F3B004EFC0B /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713AD9F1DC67F3B004EFC0B /* ESP_CRC8.m */; };
+		7713ADB91DC67F3B004EFC0B /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADA11DC67F3B004EFC0B /* ESP_NetUtil.m */; };
+		7713ADBA1DC67F3B004EFC0B /* ESP_WifiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADA31DC67F3B004EFC0B /* ESP_WifiUtil.m */; };
+		7713ADBB1DC67F3B004EFC0B /* ESPDataCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADA51DC67F3B004EFC0B /* ESPDataCode.m */; };
+		7713ADBC1DC67F3B004EFC0B /* ESPDatumCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADA71DC67F3B004EFC0B /* ESPDatumCode.m */; };
+		7713ADBD1DC67F3B004EFC0B /* ESPGuideCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADA91DC67F3B004EFC0B /* ESPGuideCode.m */; };
+		7713ADBE1DC67F3B004EFC0B /* ESPTouchGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADAC1DC67F3B004EFC0B /* ESPTouchGenerator.m */; };
+		7713ADBF1DC67F3B004EFC0B /* ESPTouchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADAE1DC67F3B004EFC0B /* ESPTouchResult.m */; };
+		7713ADC01DC67F3B004EFC0B /* ESPTouchTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADB01DC67F3B004EFC0B /* ESPTouchTask.m */; };
+		7713ADC11DC67F3B004EFC0B /* ESPTouchTaskParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADB21DC67F3B004EFC0B /* ESPTouchTaskParameter.m */; };
+		7713ADC21DC67F3B004EFC0B /* ESPUDPSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADB41DC67F3B004EFC0B /* ESPUDPSocketClient.m */; };
+		7713ADC31DC67F3B004EFC0B /* ESPUDPSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7713ADB61DC67F3B004EFC0B /* ESPUDPSocketServer.m */; };
+		771B71041D7AD34D002BE008 /* ChartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771B71031D7AD34D002BE008 /* ChartPoint.swift */; };
+		77206B921D781A8000D77312 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B911D781A8000D77312 /* SwiftyJSON.swift */; };
+		77206B941D781B2F00D77312 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B931D781B2F00D77312 /* API.swift */; };
+		77206B961D781F6A00D77312 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B951D781F6A00D77312 /* User.swift */; };
+		77206B981D78225700D77312 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B971D78225700D77312 /* UserManager.swift */; };
+		77206B9A1D7824B700D77312 /* AirService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B991D7824B700D77312 /* AirService.swift */; };
+		774706041D738191005D4E3E /* SmallButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774706031D738191005D4E3E /* SmallButtonTableViewCell.swift */; };
+		774706061D738287005D4E3E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774706051D738287005D4E3E /* LogInViewController.swift */; };
+		774706081D7383E8005D4E3E /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774706071D7383E8005D4E3E /* ResetPassViewController.swift */; };
+		7747060A1D73868D005D4E3E /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774706091D73868D005D4E3E /* ConnectViewController.swift */; };
+		777CD3491D742EE90011BDC2 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD3481D742EE90011BDC2 /* DeviceViewController.swift */; };
+		777CD34B1D742F040011BDC2 /* ReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */; };
+		77868B191D78868E00CD2DBA /* Readings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77868B181D78868E00CD2DBA /* Readings.swift */; };
+		778DD35A1D73416600221A5B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DD3591D73416600221A5B /* CreateAccountViewController.swift */; };
+		779DBFF01D730A4500623FFE /* BigButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFEF1D730A4500623FFE /* BigButtonTableViewCell.swift */; };
+		779DBFF21D730BE200623FFE /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF11D730BE200623FFE /* InputTableViewCell.swift */; };
+		779DBFF41D730BFF00623FFE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF31D730BFF00623FFE /* Enums.swift */; };
+		779DBFF61D730CFA00623FFE /* ConnectIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF51D730CFA00623FFE /* ConnectIntroViewController.swift */; };
+		77D0D5E51D6F822F00D7199C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D0D5E41D6F822F00D7199C /* AppDelegate.swift */; };
+		77D0D5EC1D6F822F00D7199C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77D0D5EB1D6F822F00D7199C /* Assets.xcassets */; };
+		77D0D5EF1D6F822F00D7199C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D0D5ED1D6F822F00D7199C /* LaunchScreen.storyboard */; };
+		77D0D5FA1D6F822F00D7199C /* CityOSAirTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D0D5F91D6F822F00D7199C /* CityOSAirTests.swift */; };
+		77D0D6061D6F827200D7199C /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D0D6051D6F827200D7199C /* IntroViewController.swift */; };
+		77D2E2E61D72D1ED00D012BC /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2E2E51D72D1ED00D012BC /* Text.swift */; };
+		77D2E2E81D72DE5B00D012BC /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2E2E71D72DE5B00D012BC /* Styles.swift */; };
+		77D2E2EA1D72EBE000D012BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2E2E91D72EBE000D012BC /* Extensions.swift */; };
+		77D2E2ED1D72ECAD00D012BC /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2E2EC1D72ECAD00D012BC /* Reusable.swift */; };
+		EE742475B96CE2C48080D1FE /* Pods_CityOSAir.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6765CBADE61F6BF7BC92644D /* Pods_CityOSAir.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		77D0D5F61D6F822F00D7199C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77D0D5D91D6F822E00D7199C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77D0D5E01D6F822E00D7199C;
+			remoteInfo = CityOSAir;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		38720F6EE39D8FD41C13DDCD /* Pods-CityOSAir.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityOSAir.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CityOSAir/Pods-CityOSAir.debug.xcconfig"; sourceTree = "<group>"; };
+		6765CBADE61F6BF7BC92644D /* Pods_CityOSAir.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CityOSAir.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77065DF01D74460B00960AA5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		77065DF21D744A3600960AA5 /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		77065E0C1D7450C700960AA5 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		7713AD9C1DC67F3B004EFC0B /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
+		7713AD9D1DC67F3B004EFC0B /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
+		7713AD9E1DC67F3B004EFC0B /* ESP_CRC8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_CRC8.h; sourceTree = "<group>"; };
+		7713AD9F1DC67F3B004EFC0B /* ESP_CRC8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_CRC8.m; sourceTree = "<group>"; };
+		7713ADA01DC67F3B004EFC0B /* ESP_NetUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_NetUtil.h; sourceTree = "<group>"; };
+		7713ADA11DC67F3B004EFC0B /* ESP_NetUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_NetUtil.m; sourceTree = "<group>"; };
+		7713ADA21DC67F3B004EFC0B /* ESP_WifiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_WifiUtil.h; sourceTree = "<group>"; };
+		7713ADA31DC67F3B004EFC0B /* ESP_WifiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_WifiUtil.m; sourceTree = "<group>"; };
+		7713ADA41DC67F3B004EFC0B /* ESPDataCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPDataCode.h; sourceTree = "<group>"; };
+		7713ADA51DC67F3B004EFC0B /* ESPDataCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPDataCode.m; sourceTree = "<group>"; };
+		7713ADA61DC67F3B004EFC0B /* ESPDatumCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPDatumCode.h; sourceTree = "<group>"; };
+		7713ADA71DC67F3B004EFC0B /* ESPDatumCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPDatumCode.m; sourceTree = "<group>"; };
+		7713ADA81DC67F3B004EFC0B /* ESPGuideCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPGuideCode.h; sourceTree = "<group>"; };
+		7713ADA91DC67F3B004EFC0B /* ESPGuideCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPGuideCode.m; sourceTree = "<group>"; };
+		7713ADAA1DC67F3B004EFC0B /* ESPTouchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchDelegate.h; sourceTree = "<group>"; };
+		7713ADAB1DC67F3B004EFC0B /* ESPTouchGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchGenerator.h; sourceTree = "<group>"; };
+		7713ADAC1DC67F3B004EFC0B /* ESPTouchGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchGenerator.m; sourceTree = "<group>"; };
+		7713ADAD1DC67F3B004EFC0B /* ESPTouchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchResult.h; sourceTree = "<group>"; };
+		7713ADAE1DC67F3B004EFC0B /* ESPTouchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchResult.m; sourceTree = "<group>"; };
+		7713ADAF1DC67F3B004EFC0B /* ESPTouchTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchTask.h; sourceTree = "<group>"; };
+		7713ADB01DC67F3B004EFC0B /* ESPTouchTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchTask.m; sourceTree = "<group>"; };
+		7713ADB11DC67F3B004EFC0B /* ESPTouchTaskParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPTouchTaskParameter.h; sourceTree = "<group>"; };
+		7713ADB21DC67F3B004EFC0B /* ESPTouchTaskParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPTouchTaskParameter.m; sourceTree = "<group>"; };
+		7713ADB31DC67F3B004EFC0B /* ESPUDPSocketClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPUDPSocketClient.h; sourceTree = "<group>"; };
+		7713ADB41DC67F3B004EFC0B /* ESPUDPSocketClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPUDPSocketClient.m; sourceTree = "<group>"; };
+		7713ADB51DC67F3B004EFC0B /* ESPUDPSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPUDPSocketServer.h; sourceTree = "<group>"; };
+		7713ADB61DC67F3B004EFC0B /* ESPUDPSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPUDPSocketServer.m; sourceTree = "<group>"; };
+		7713ADC41DC67F90004EFC0B /* CityOSAir-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CityOSAir-Bridging-Header.h"; path = "../CityOSAir-Bridging-Header.h"; sourceTree = "<group>"; };
+		771B71031D7AD34D002BE008 /* ChartPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartPoint.swift; sourceTree = "<group>"; };
+		77206B911D781A8000D77312 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		77206B931D781B2F00D77312 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		77206B951D781F6A00D77312 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		77206B971D78225700D77312 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		77206B991D7824B700D77312 /* AirService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirService.swift; sourceTree = "<group>"; };
+		774706031D738191005D4E3E /* SmallButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallButtonTableViewCell.swift; sourceTree = "<group>"; };
+		774706051D738287005D4E3E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		774706071D7383E8005D4E3E /* ResetPassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
+		774706091D73868D005D4E3E /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		777CD3481D742EE90011BDC2 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
+		777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTableViewCell.swift; sourceTree = "<group>"; };
+		77868B181D78868E00CD2DBA /* Readings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readings.swift; sourceTree = "<group>"; };
+		778DD3591D73416600221A5B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		779DBFEF1D730A4500623FFE /* BigButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButtonTableViewCell.swift; sourceTree = "<group>"; };
+		779DBFF11D730BE200623FFE /* InputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
+		779DBFF31D730BFF00623FFE /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		779DBFF51D730CFA00623FFE /* ConnectIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectIntroViewController.swift; sourceTree = "<group>"; };
+		77D0D5E11D6F822E00D7199C /* CityOSAir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityOSAir.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77D0D5E41D6F822F00D7199C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		77D0D5EB1D6F822F00D7199C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		77D0D5EE1D6F822F00D7199C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		77D0D5F01D6F822F00D7199C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77D0D5F51D6F822F00D7199C /* CityOSAirTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityOSAirTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77D0D5F91D6F822F00D7199C /* CityOSAirTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityOSAirTests.swift; sourceTree = "<group>"; };
+		77D0D5FB1D6F822F00D7199C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77D0D6051D6F827200D7199C /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		77D2E2E51D72D1ED00D012BC /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		77D2E2E71D72DE5B00D012BC /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		77D2E2E91D72EBE000D012BC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		77D2E2EC1D72ECAD00D012BC /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		93995C77BDE858D5588A8707 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B52E511389137F4B29518F7F /* Pods-CityOSAir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityOSAir.release.xcconfig"; path = "Pods/Target Support Files/Pods-CityOSAir/Pods-CityOSAir.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77D0D5DE1D6F822E00D7199C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE742475B96CE2C48080D1FE /* Pods_CityOSAir.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77D0D5F21D6F822F00D7199C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77065DEB1D74455700960AA5 /* Create Account */ = {
+			isa = PBXGroup;
+			children = (
+				77D0D6051D6F827200D7199C /* IntroViewController.swift */,
+				778DD3591D73416600221A5B /* CreateAccountViewController.swift */,
+			);
+			path = "Create Account";
+			sourceTree = "<group>";
+		};
+		77065DEC1D74458E00960AA5 /* Connect Device */ = {
+			isa = PBXGroup;
+			children = (
+				779DBFF51D730CFA00623FFE /* ConnectIntroViewController.swift */,
+				774706091D73868D005D4E3E /* ConnectViewController.swift */,
+			);
+			path = "Connect Device";
+			sourceTree = "<group>";
+		};
+		77065DED1D7445A500960AA5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				774706071D7383E8005D4E3E /* ResetPassViewController.swift */,
+				774706051D738287005D4E3E /* LogInViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		77065DEE1D7445B500960AA5 /* Device Data Display */ = {
+			isa = PBXGroup;
+			children = (
+				777CD3481D742EE90011BDC2 /* DeviceViewController.swift */,
+				77065DF21D744A3600960AA5 /* GraphViewController.swift */,
+			);
+			path = "Device Data Display";
+			sourceTree = "<group>";
+		};
+		77065DEF1D7445C100960AA5 /* Device Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77065DF01D74460B00960AA5 /* SettingsViewController.swift */,
+			);
+			path = "Device Settings";
+			sourceTree = "<group>";
+		};
+		77206B8D1D78129500D77312 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				77065E0C1D7450C700960AA5 /* ChartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		77206B8E1D7812A800D77312 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				77206B951D781F6A00D77312 /* User.swift */,
+				77868B181D78868E00CD2DBA /* Readings.swift */,
+				771B71031D7AD34D002BE008 /* ChartPoint.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		77206B9B1D783CF300D77312 /* Network Service */ = {
+			isa = PBXGroup;
+			children = (
+				77206B931D781B2F00D77312 /* API.swift */,
+				77206B991D7824B700D77312 /* AirService.swift */,
+			);
+			path = "Network Service";
+			sourceTree = "<group>";
+		};
+		778F191F1D746AC4006290F6 /* ESPTouch */ = {
+			isa = PBXGroup;
+			children = (
+				7713AD9C1DC67F3B004EFC0B /* ESP_ByteUtil.h */,
+				7713AD9D1DC67F3B004EFC0B /* ESP_ByteUtil.m */,
+				7713AD9E1DC67F3B004EFC0B /* ESP_CRC8.h */,
+				7713AD9F1DC67F3B004EFC0B /* ESP_CRC8.m */,
+				7713ADA01DC67F3B004EFC0B /* ESP_NetUtil.h */,
+				7713ADA11DC67F3B004EFC0B /* ESP_NetUtil.m */,
+				7713ADA21DC67F3B004EFC0B /* ESP_WifiUtil.h */,
+				7713ADA31DC67F3B004EFC0B /* ESP_WifiUtil.m */,
+				7713ADA41DC67F3B004EFC0B /* ESPDataCode.h */,
+				7713ADA51DC67F3B004EFC0B /* ESPDataCode.m */,
+				7713ADA61DC67F3B004EFC0B /* ESPDatumCode.h */,
+				7713ADA71DC67F3B004EFC0B /* ESPDatumCode.m */,
+				7713ADA81DC67F3B004EFC0B /* ESPGuideCode.h */,
+				7713ADA91DC67F3B004EFC0B /* ESPGuideCode.m */,
+				7713ADAA1DC67F3B004EFC0B /* ESPTouchDelegate.h */,
+				7713ADAB1DC67F3B004EFC0B /* ESPTouchGenerator.h */,
+				7713ADAC1DC67F3B004EFC0B /* ESPTouchGenerator.m */,
+				7713ADAD1DC67F3B004EFC0B /* ESPTouchResult.h */,
+				7713ADAE1DC67F3B004EFC0B /* ESPTouchResult.m */,
+				7713ADAF1DC67F3B004EFC0B /* ESPTouchTask.h */,
+				7713ADB01DC67F3B004EFC0B /* ESPTouchTask.m */,
+				7713ADB11DC67F3B004EFC0B /* ESPTouchTaskParameter.h */,
+				7713ADB21DC67F3B004EFC0B /* ESPTouchTaskParameter.m */,
+				7713ADB31DC67F3B004EFC0B /* ESPUDPSocketClient.h */,
+				7713ADB41DC67F3B004EFC0B /* ESPUDPSocketClient.m */,
+				7713ADB51DC67F3B004EFC0B /* ESPUDPSocketServer.h */,
+				7713ADB61DC67F3B004EFC0B /* ESPUDPSocketServer.m */,
+				7713ADC41DC67F90004EFC0B /* CityOSAir-Bridging-Header.h */,
+			);
+			path = ESPTouch;
+			sourceTree = "<group>";
+		};
+		779DBFEE1D7309E600623FFE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				779DBFEF1D730A4500623FFE /* BigButtonTableViewCell.swift */,
+				779DBFF11D730BE200623FFE /* InputTableViewCell.swift */,
+				774706031D738191005D4E3E /* SmallButtonTableViewCell.swift */,
+				777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		77D0D5D81D6F822E00D7199C = {
+			isa = PBXGroup;
+			children = (
+				77D0D5E31D6F822E00D7199C /* CityOSAir */,
+				77D0D5F81D6F822F00D7199C /* CityOSAirTests */,
+				77D0D5E21D6F822E00D7199C /* Products */,
+				9E0ACB2597C232889067FFA7 /* Frameworks */,
+				B5123586EFE1DC015DE76467 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		77D0D5E21D6F822E00D7199C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77D0D5E11D6F822E00D7199C /* CityOSAir.app */,
+				77D0D5F51D6F822F00D7199C /* CityOSAirTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77D0D5E31D6F822E00D7199C /* CityOSAir */ = {
+			isa = PBXGroup;
+			children = (
+				778F191F1D746AC4006290F6 /* ESPTouch */,
+				77D2E2EB1D72EC9E00D012BC /* Protocols */,
+				77206B9B1D783CF300D77312 /* Network Service */,
+				77D2E2E41D72D1AF00D012BC /* Utils */,
+				779DBFEE1D7309E600623FFE /* Cells */,
+				77D0D6041D6F825C00D7199C /* ViewControllers */,
+				77206B8D1D78129500D77312 /* Views */,
+				77206B8E1D7812A800D77312 /* Models */,
+				77D0D5E41D6F822F00D7199C /* AppDelegate.swift */,
+				77D0D5EB1D6F822F00D7199C /* Assets.xcassets */,
+				77D0D5ED1D6F822F00D7199C /* LaunchScreen.storyboard */,
+				77D0D5F01D6F822F00D7199C /* Info.plist */,
+			);
+			path = CityOSAir;
+			sourceTree = "<group>";
+		};
+		77D0D5F81D6F822F00D7199C /* CityOSAirTests */ = {
+			isa = PBXGroup;
+			children = (
+				77D0D5F91D6F822F00D7199C /* CityOSAirTests.swift */,
+				77D0D5FB1D6F822F00D7199C /* Info.plist */,
+			);
+			path = CityOSAirTests;
+			sourceTree = "<group>";
+		};
+		77D0D6041D6F825C00D7199C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				77065DEF1D7445C100960AA5 /* Device Settings */,
+				77065DEE1D7445B500960AA5 /* Device Data Display */,
+				77065DED1D7445A500960AA5 /* Login */,
+				77065DEC1D74458E00960AA5 /* Connect Device */,
+				77065DEB1D74455700960AA5 /* Create Account */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		77D2E2E41D72D1AF00D012BC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				77206B911D781A8000D77312 /* SwiftyJSON.swift */,
+				77D2E2E51D72D1ED00D012BC /* Text.swift */,
+				77D2E2E71D72DE5B00D012BC /* Styles.swift */,
+				77D2E2E91D72EBE000D012BC /* Extensions.swift */,
+				779DBFF31D730BFF00623FFE /* Enums.swift */,
+				77206B971D78225700D77312 /* UserManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		77D2E2EB1D72EC9E00D012BC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				77D2E2EC1D72ECAD00D012BC /* Reusable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9E0ACB2597C232889067FFA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93995C77BDE858D5588A8707 /* Pods.framework */,
+				6765CBADE61F6BF7BC92644D /* Pods_CityOSAir.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5123586EFE1DC015DE76467 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38720F6EE39D8FD41C13DDCD /* Pods-CityOSAir.debug.xcconfig */,
+				B52E511389137F4B29518F7F /* Pods-CityOSAir.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77D0D5E01D6F822E00D7199C /* CityOSAir */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77D0D5FE1D6F822F00D7199C /* Build configuration list for PBXNativeTarget "CityOSAir" */;
+			buildPhases = (
+				A26A1AEC44579E35A7838C4C /* [CP] Check Pods Manifest.lock */,
+				77D0D5DD1D6F822E00D7199C /* Sources */,
+				77D0D5DE1D6F822E00D7199C /* Frameworks */,
+				77D0D5DF1D6F822E00D7199C /* Resources */,
+				D5C9FA25848CA6FE3724DD5A /* [CP] Embed Pods Frameworks */,
+				1E87B03747784F7F8C2A3910 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CityOSAir;
+			productName = CityOSAir;
+			productReference = 77D0D5E11D6F822E00D7199C /* CityOSAir.app */;
+			productType = "com.apple.product-type.application";
+		};
+		77D0D5F41D6F822F00D7199C /* CityOSAirTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77D0D6011D6F822F00D7199C /* Build configuration list for PBXNativeTarget "CityOSAirTests" */;
+			buildPhases = (
+				77D0D5F11D6F822F00D7199C /* Sources */,
+				77D0D5F21D6F822F00D7199C /* Frameworks */,
+				77D0D5F31D6F822F00D7199C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77D0D5F71D6F822F00D7199C /* PBXTargetDependency */,
+			);
+			name = CityOSAirTests;
+			productName = CityOSAirTests;
+			productReference = 77D0D5F51D6F822F00D7199C /* CityOSAirTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77D0D5D91D6F822E00D7199C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = CityOS;
+				TargetAttributes = {
+					77D0D5E01D6F822E00D7199C = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 648PE3P6D2;
+						LastSwiftMigration = 0800;
+					};
+					77D0D5F41D6F822F00D7199C = {
+						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
+						TestTargetID = 77D0D5E01D6F822E00D7199C;
+					};
+				};
+			};
+			buildConfigurationList = 77D0D5DC1D6F822E00D7199C /* Build configuration list for PBXProject "CityOSAir" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77D0D5D81D6F822E00D7199C;
+			productRefGroup = 77D0D5E21D6F822E00D7199C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77D0D5E01D6F822E00D7199C /* CityOSAir */,
+				77D0D5F41D6F822F00D7199C /* CityOSAirTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77D0D5DF1D6F822E00D7199C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77D0D5EF1D6F822F00D7199C /* LaunchScreen.storyboard in Resources */,
+				77D0D5EC1D6F822F00D7199C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77D0D5F31D6F822F00D7199C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E87B03747784F7F8C2A3910 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CityOSAir/Pods-CityOSAir-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A26A1AEC44579E35A7838C4C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D5C9FA25848CA6FE3724DD5A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CityOSAir/Pods-CityOSAir-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77D0D5DD1D6F822E00D7199C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7713ADBC1DC67F3B004EFC0B /* ESPDatumCode.m in Sources */,
+				77D2E2ED1D72ECAD00D012BC /* Reusable.swift in Sources */,
+				77065DF31D744A3600960AA5 /* GraphViewController.swift in Sources */,
+				77206B981D78225700D77312 /* UserManager.swift in Sources */,
+				777CD3491D742EE90011BDC2 /* DeviceViewController.swift in Sources */,
+				7713ADC21DC67F3B004EFC0B /* ESPUDPSocketClient.m in Sources */,
+				77868B191D78868E00CD2DBA /* Readings.swift in Sources */,
+				7713ADBB1DC67F3B004EFC0B /* ESPDataCode.m in Sources */,
+				7713ADC01DC67F3B004EFC0B /* ESPTouchTask.m in Sources */,
+				77D2E2EA1D72EBE000D012BC /* Extensions.swift in Sources */,
+				77206B941D781B2F00D77312 /* API.swift in Sources */,
+				77206B9A1D7824B700D77312 /* AirService.swift in Sources */,
+				774706041D738191005D4E3E /* SmallButtonTableViewCell.swift in Sources */,
+				77065DF11D74460B00960AA5 /* SettingsViewController.swift in Sources */,
+				77D0D5E51D6F822F00D7199C /* AppDelegate.swift in Sources */,
+				778DD35A1D73416600221A5B /* CreateAccountViewController.swift in Sources */,
+				7713ADC11DC67F3B004EFC0B /* ESPTouchTaskParameter.m in Sources */,
+				77206B921D781A8000D77312 /* SwiftyJSON.swift in Sources */,
+				7713ADB81DC67F3B004EFC0B /* ESP_CRC8.m in Sources */,
+				7713ADBA1DC67F3B004EFC0B /* ESP_WifiUtil.m in Sources */,
+				779DBFF01D730A4500623FFE /* BigButtonTableViewCell.swift in Sources */,
+				77206B961D781F6A00D77312 /* User.swift in Sources */,
+				771B71041D7AD34D002BE008 /* ChartPoint.swift in Sources */,
+				77D2E2E61D72D1ED00D012BC /* Text.swift in Sources */,
+				7713ADC31DC67F3B004EFC0B /* ESPUDPSocketServer.m in Sources */,
+				7713ADB91DC67F3B004EFC0B /* ESP_NetUtil.m in Sources */,
+				77D0D6061D6F827200D7199C /* IntroViewController.swift in Sources */,
+				779DBFF21D730BE200623FFE /* InputTableViewCell.swift in Sources */,
+				774706061D738287005D4E3E /* LogInViewController.swift in Sources */,
+				777CD34B1D742F040011BDC2 /* ReadingTableViewCell.swift in Sources */,
+				779DBFF41D730BFF00623FFE /* Enums.swift in Sources */,
+				7713ADB71DC67F3B004EFC0B /* ESP_ByteUtil.m in Sources */,
+				774706081D7383E8005D4E3E /* ResetPassViewController.swift in Sources */,
+				7713ADBF1DC67F3B004EFC0B /* ESPTouchResult.m in Sources */,
+				77065E0D1D7450C700960AA5 /* ChartView.swift in Sources */,
+				779DBFF61D730CFA00623FFE /* ConnectIntroViewController.swift in Sources */,
+				77D2E2E81D72DE5B00D012BC /* Styles.swift in Sources */,
+				7713ADBD1DC67F3B004EFC0B /* ESPGuideCode.m in Sources */,
+				7747060A1D73868D005D4E3E /* ConnectViewController.swift in Sources */,
+				7713ADBE1DC67F3B004EFC0B /* ESPTouchGenerator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77D0D5F11D6F822F00D7199C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77D0D5FA1D6F822F00D7199C /* CityOSAirTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77D0D5F71D6F822F00D7199C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77D0D5E01D6F822E00D7199C /* CityOSAir */;
+			targetProxy = 77D0D5F61D6F822F00D7199C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		77D0D5ED1D6F822F00D7199C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77D0D5EE1D6F822F00D7199C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		77D0D5FC1D6F822F00D7199C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		77D0D5FD1D6F822F00D7199C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		77D0D5FF1D6F822F00D7199C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38720F6EE39D8FD41C13DDCD /* Pods-CityOSAir.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = CityOSAir/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.cityos.cityos-air";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CityOSAir/CityOSAir-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		77D0D6001D6F822F00D7199C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B52E511389137F4B29518F7F /* Pods-CityOSAir.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = CityOSAir/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.cityos.cityos-air";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CityOSAir/CityOSAir-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		77D0D6021D6F822F00D7199C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CityOSAirTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityOS.CityOSAirTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityOSAir.app/CityOSAir";
+			};
+			name = Debug;
+		};
+		77D0D6031D6F822F00D7199C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CityOSAirTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityOS.CityOSAirTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityOSAir.app/CityOSAir";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77D0D5DC1D6F822E00D7199C /* Build configuration list for PBXProject "CityOSAir" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77D0D5FC1D6F822F00D7199C /* Debug */,
+				77D0D5FD1D6F822F00D7199C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77D0D5FE1D6F822F00D7199C /* Build configuration list for PBXNativeTarget "CityOSAir" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77D0D5FF1D6F822F00D7199C /* Debug */,
+				77D0D6001D6F822F00D7199C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77D0D6011D6F822F00D7199C /* Build configuration list for PBXNativeTarget "CityOSAirTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77D0D6021D6F822F00D7199C /* Debug */,
+				77D0D6031D6F822F00D7199C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 77D0D5D91D6F822E00D7199C /* Project object */;
+}
