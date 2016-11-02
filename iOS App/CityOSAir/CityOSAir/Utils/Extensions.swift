@@ -67,11 +67,10 @@ extension Date {
         return (first == second)
     }
     
-    func dateToString() -> String {
+    func dateToXAxisTimestamp() -> String {
         let formatter = DateFormatter()
-        formatter.amSymbol = "am"
-        formatter.pmSymbol = "pm"
-        formatter.dateFormat = "HH:mma"
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
         return formatter.string(from: self)
     }
 }

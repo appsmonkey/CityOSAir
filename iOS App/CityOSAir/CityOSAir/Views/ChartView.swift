@@ -45,10 +45,22 @@ class ChartView: UIView {
         chart.highlightPerDragEnabled = true
         
         chart.noDataText = "Fetching data . . ."
+        chart.noDataTextColor = .white
         chart.chartDescription?.text = ""
         chart.isUserInteractionEnabled = false
         
+        chart.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: self.numberFormatter)
+
         return chart
+    }()
+    
+    lazy var numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.roundingMode = .floor
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 0
+        return formatter
     }()
     
     func setupConstraints() {
@@ -73,7 +85,6 @@ class ChartView: UIView {
         
         let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Values")
         
-        
         lineChartDataSet.mode = .cubicBezier
         lineChartDataSet.lineWidth = 2
         lineChartDataSet.circleRadius = 0
@@ -83,14 +94,6 @@ class ChartView: UIView {
         lineChartDataSet.highlightColor = .white
         
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.roundingMode = .floor
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 0
-        
-        chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
         
         chartView.data = lineChartData
     }

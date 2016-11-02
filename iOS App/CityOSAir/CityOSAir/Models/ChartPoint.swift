@@ -12,7 +12,7 @@ struct ChartPoint {
     
     var xLabel: String {
         get {
-            return date.dateToString()
+            return date.dateToXAxisTimestamp()
         }
     }
     var value: Double

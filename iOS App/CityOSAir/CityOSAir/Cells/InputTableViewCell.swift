@@ -56,6 +56,7 @@ class InputTableViewCell: UITableViewCell {
             textField.isSecureTextEntry = true
         case .email:
             placeholder = Text.Placeholders.email
+            textField.keyboardType = .emailAddress
         case .password:
             placeholder = Text.Placeholders.password
             textField.isSecureTextEntry = true
