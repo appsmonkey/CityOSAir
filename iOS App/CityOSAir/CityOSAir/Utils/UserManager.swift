@@ -64,8 +64,12 @@ class UserManager {
             if success {
 
                 if let usr = user {
+                    
+                    usr.email = email
+                    usr.password = password
+                    
                     try! self.realm.write {
-                        self.realm.add(usr)
+                        self.realm.add(usr, update: true)
                     }
                     
                     AirService.device({ (success, message, deviceID) in
