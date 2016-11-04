@@ -10,10 +10,11 @@ import UIKit
 
 class GraphViewController: UIViewController {
     
-    let closeBtn: UIButton = {
+    lazy var closeBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "closewhite"), for: UIControlState())
         btn.tintColor = Styles.Colors.white
+        btn.addTarget(self, action: #selector(GraphViewController.closePressed), for: .touchUpInside)
         return btn
     }()
     
@@ -61,12 +62,8 @@ class GraphViewController: UIViewController {
         if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value, let sensorID = reading.readingType?.rawValue {
             AirService.readingsForSensor(deviceID, sensorID: sensorID) { [weak self] (success, message, chartPoints) in
                 if success {
-                    if let chartPoints = chartPoints{
-                        
-                        let x = chartPoints.map { $0.xLabel }
-                        let values = chartPoints.map { $0.value }
-                        
-                        self?.chartView.setChart(dataPoints: x, values: values)
+                    if let chartPoints = chartPoints {
+                        self?.chartView.setChart(chartPoints: chartPoints)
                     }
                 }
             }
@@ -75,8 +72,6 @@ class GraphViewController: UIViewController {
         view.addGradientAsBackground()
         
         setUI()
-        
-        closeBtn.addTarget(self, action: #selector(GraphViewController.closePressed), for: .touchUpInside)
     }
     
     fileprivate func setUI() {

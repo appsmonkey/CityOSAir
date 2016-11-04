@@ -70,7 +70,10 @@ class ChartView: UIView {
         self.addConstraintsWithFormat("V:|[v0]|", views: chartView)
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
+    func setChart(chartPoints: [ChartPoint]) {
+        
+        let dataPoints = chartPoints.map { $0.xLabel }
+        let values = chartPoints.map { $0.value }
         
         let chartFormatter = ChartFormatter()
         chartFormatter.timestamps = dataPoints
