@@ -11,11 +11,19 @@ import RealmSwift
 
 class User: Object {
     
+    dynamic var id = 1
+    
+    dynamic var email: String = ""
+    dynamic var password: String = ""
     dynamic var token: String = ""
     let deviceId = RealmOptional<Int>()
-    
+
     convenience init(json: JSON) {
         self.init()
         self.token = json["token"].stringValue
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
