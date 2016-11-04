@@ -28,9 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if let user = UserManager.sharedInstance.getLoggedInUser() {
                 
+                UserManager.sharedInstance.logingWithCredentials(user.email, password: user.password, completion: {_,_ in })
+                
                 if user.deviceId.value != nil {
                     navigationController.viewControllers.append(DeviceViewController())
-                }else {
+                } else {
                     navigationController.viewControllers.append(ConnectIntroViewController())
                 }
             }
