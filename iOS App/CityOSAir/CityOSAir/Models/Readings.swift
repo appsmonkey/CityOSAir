@@ -7,16 +7,29 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Reading {
-    var readingType: ReadingType?
-    var value: Double
+class Reading: Object {
     
-    init(type: Int, value: Double) {
-        
-        if let readingType = ReadingType(rawValue: type) {
-            self.readingType = readingType
+    dynamic var readingTypeRaw = 0
+    
+    dynamic var value = 0.0
+    
+    var readingType: ReadingType? {
+        get {
+            if let type = ReadingType(rawValue: readingTypeRaw) {
+                return type
+            }
+            
+            return nil
         }
+    }
+    
+    convenience init(type: Int, value: Double) {
+        
+        self.init()
+        
+        self.readingTypeRaw = type
         
         self.value = value
     }
