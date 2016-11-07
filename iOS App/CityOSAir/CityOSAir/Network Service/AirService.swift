@@ -108,11 +108,14 @@ class AirService {
         }
     }
     
-    static func latestReadings(_ deviceID: Int, completion: @escaping (_ success: Bool, _ message: String, _ readings: [Reading]?) -> ()) {
+    static func latestReadings(_ deviceID: Int, completion: @escaping (_ success: Bool, _ message: String, _ readings: ReadingCollection?) -> ()) {
         
         API.dataTask(API.Endpoints.readingsLatest(deviceID: deviceID), params: nil) { (success, json) in
             
             DispatchQueue.main.async {
+                
+                var readingCollection = Cache.sharedCache.getReadingCollection()
+                
                 if success {
                     if let json = json {
                         
@@ -125,14 +128,20 @@ class AirService {
                             }
                         }
                         
-                        completion(true, "OK", readings)
+                        readingCollection = ReadingCollection(lastUpdated: Date(), readings: readings)
+                        
+                        if let readingCollection = readingCollection {
+                            Cache.sharedCache.saveReadingCollection(readingCollection: readingCollection)
+                        }
+                    
+                        completion(true, "OK", readingCollection)
                         
                         return
                     }
                     
-                    completion(true, "Json parse failed", nil)
+                    completion(true, "Json parse failed", readingCollection)
                 }else {
-                    completion(false, "Failed", nil)
+                    completion(false, "Failed", readingCollection)
                 }
             }
         }
