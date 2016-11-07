@@ -86,7 +86,7 @@ class ReadingTableViewCell: UITableViewCell {
         contentView.addSubview(readingLabel)
         contentView.addSubview(notationLabel)
 
-        contentView.addConstraintsWithFormat("H:|-15-[v0]-15-[v1]", views: typeImage, identifierLabel)
+        contentView.addConstraintsWithFormat("H:|-15-[v0(30)]-15-[v1]", views: typeImage, identifierLabel)
         contentView.addConstraintsWithFormat("H:[v0][v1]-15-[v2]-25-|", views: readingLabel, notationLabel, rightArrow)
         
         contentView.addConstraint(NSLayoutConstraint(item: typeImage, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
