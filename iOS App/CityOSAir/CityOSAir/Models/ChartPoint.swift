@@ -29,9 +29,3 @@ struct ChartPoint {
         value = json["value"].doubleValue
     }
 }
-
-extension ChartPoint: Equatable {}
-
-func ==(lhs: ChartPoint, rhs: ChartPoint) -> Bool {
-    return lhs.date.isSameHourAs(rhs.date)
-}
