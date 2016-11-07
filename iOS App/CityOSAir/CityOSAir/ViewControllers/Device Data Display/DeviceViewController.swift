@@ -53,19 +53,22 @@ class DeviceViewController: UIViewController {
         return refresh
     }()
     
-    var readingData: [Reading] = [] {
+    var readingCollection: ReadingCollection? {
         didSet {
-            tableView.reloadData()
             
-            let now = Date()
+            self.readings = Array(readingCollection!.realmReadings)
+            
+            tableView.reloadData()
             
             let formatter = DateFormatter()
             formatter.dateStyle = .short
             formatter.timeStyle = .short
             
-            timeStamp.text = "\(Text.Readings.subtitle) \(formatter.string(from: now))"
+            timeStamp.text = "\(Text.Readings.subtitle) \(formatter.string(from: readingCollection!.lastUpdated))"
         }
     }
+    
+    var readings: [Reading] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,11 +114,9 @@ class DeviceViewController: UIViewController {
     
     func refreshData() {
         if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value {
-            AirService.latestReadings(deviceID) { [weak self] (success, message, readings) in
-                if success {
-                    if let data = readings {
-                        self?.readingData = data
-                    }
+            AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
+                if let readingCollection = readingCollection {
+                    self?.readingCollection = readingCollection
                 }
             }
         }
@@ -124,12 +125,12 @@ class DeviceViewController: UIViewController {
     func refresh(_ sender: UIRefreshControl) {
         sender.isEnabled = false
         if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value {
-            AirService.latestReadings(deviceID) { [weak self] (success, message, readings) in
-                if success {
-                    if let data = readings {
-                        self?.readingData = data
-                    }
+            AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
+
+                if let readingCollection = readingCollection {
+                    self?.readingCollection = readingCollection
                 }
+                
                 sender.endRefreshing()
                 sender.isEnabled = true
             }
@@ -150,13 +151,13 @@ class DeviceViewController: UIViewController {
 extension DeviceViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return readingData.count
+        return readings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ReadingTableViewCell
         
-        let reading = readingData[(indexPath as NSIndexPath).row]
+        let reading = readings[(indexPath as NSIndexPath).row]
         
         cell.configure(reading.readingType!, value: "\(reading.value)")
         
@@ -168,7 +169,7 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource {
         
         let graphVC = GraphViewController()
         
-        graphVC.reading = readingData[(indexPath as NSIndexPath).row]
+        graphVC.reading = readings[(indexPath as NSIndexPath).row]
         
         present(graphVC, animated: true, completion: nil)
     }
