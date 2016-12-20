@@ -43,11 +43,20 @@ class CreateAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hideKeyboardWhenTappedAround()
+        
         self.title = Text.AccountCreate.title
         
         setUI()
         
         existingAccBtn.addTarget(self, action: #selector(CreateAccountViewController.existingAccPressed), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+
     }
     
     fileprivate func setUI() {

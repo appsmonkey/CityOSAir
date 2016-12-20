@@ -33,6 +33,8 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hideKeyboardWhenTappedAround()
+        
         self.title = Text.LogIn.title
         
         setUI()
