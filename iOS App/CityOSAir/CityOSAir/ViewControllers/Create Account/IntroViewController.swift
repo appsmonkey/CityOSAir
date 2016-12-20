@@ -72,7 +72,6 @@ class IntroViewController: UIViewController {
     }
     
     func getStartedClicked() {
-        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(CreateAccountViewController(), animated: true)
     }
     

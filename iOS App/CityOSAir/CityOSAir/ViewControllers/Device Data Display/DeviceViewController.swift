@@ -90,8 +90,8 @@ class DeviceViewController: UIViewController {
         view.addSubview(timeStamp)
         view.addSubview(tableView)
         
-        view.addConstraintsWithFormat("V:|-25-[v0]", views: settingsBtn)
-        view.addConstraintsWithFormat("H:|-15-[v0]", views: settingsBtn, header)
+        view.addConstraintsWithFormat("V:|-30-[v0]", views: settingsBtn)
+        view.addConstraintsWithFormat("H:|-15-[v0]", views: settingsBtn)
         
         view.addConstraintsWithFormat("V:[v0]-[v1]-10-[v2]|", views: header, timeStamp, tableView)
 
@@ -103,7 +103,7 @@ class DeviceViewController: UIViewController {
         view.addConstraint(NSLayoutConstraint(item: header, attribute: .centerY, relatedBy: .equal, toItem: settingsBtn, attribute: .centerY, multiplier: 1, constant: 0))
         
         view.addConstraint(NSLayoutConstraint(item: timeStamp, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0))
-        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
