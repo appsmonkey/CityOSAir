@@ -150,6 +150,15 @@ class Gradient {
 
 extension UIViewController {
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func alert(_ title:String, message:String?, close: String, closeHandler: ((UIAlertAction) -> Void)?) {
                 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -170,9 +179,22 @@ extension UIViewController {
         return darkView
     }
     
-    func startLoading(_ message: String = "Loading...") {
+    func startLoading(_ message: String = "Loading...", _ action: Selector? = nil) {
         
         let coverView = darkView()
+        
+        if let action = action {
+            
+            let button = UIButton()
+            button.setImage(UIImage(named: "closewhite"), for: UIControlState())
+            button.tintColor = Styles.Colors.white
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.addTarget(self, action: action, for: .touchUpInside)
+            coverView.addSubview(button)
+            
+            button.topAnchor.constraint(equalTo: coverView.topAnchor, constant: 30).isActive = true
+            button.trailingAnchor.constraint(equalTo: coverView.trailingAnchor, constant: -15).isActive = true
+        }
         
         let msgLabel = UILabel()
         msgLabel.font = Styles.Loading.font
@@ -267,7 +289,7 @@ extension UIDevice {
         }else if UIDevice.isDeviceWithHeight568() {
             return 1.5
         }else if UIDevice.isDeviceWithHeight667() {
-            return 2
+            return 1.8//2
         }else{
             return 2
         }
