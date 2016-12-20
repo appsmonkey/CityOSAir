@@ -57,7 +57,7 @@ class LogInViewController: UIViewController {
                 
                 startLoading(Text.LogIn.Messages.loadingMsg)
                 
-                UserManager.sharedInstance.logingWithCredentials(email, password: password) { [weak self] (result, hasDevice) in
+                UserManager.sharedInstance.logingWithCredentials(email, password: password) { [weak self] (result, hasDevice, message) in
                     
                     self?.stopLoading()
                     
@@ -69,6 +69,8 @@ class LogInViewController: UIViewController {
                             self?.navigationController?.pushViewController(ConnectIntroViewController(), animated: true)
                         }
                         
+                    }else {
+                        self?.alert(message, message: nil, close: "Close", closeHandler: nil)
                     }
                 }
             }else {
