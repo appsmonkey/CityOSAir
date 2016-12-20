@@ -55,7 +55,7 @@ class UserManager {
         return user
     }
     
-    func logingWithCredentials(_ email:String, password:String, completion: @escaping (_ result:User?, _ hasDevice: Bool) -> Void) {
+    func logingWithCredentials(_ email:String, password:String, completion: @escaping (_ result:User?, _ hasDevice: Bool, _ message: String) -> Void) {
         
         print(["email":email,"password":password])
         
@@ -77,25 +77,24 @@ class UserManager {
                             
                             if let id = deviceID {
                                 let user = self.associateDeviceWithUser(id)
-                                completion(user, true)
+                                completion(user, true, message)
                                 return
                             }
                         }
                         
-                        completion(user, false)
+                        completion(user, false, message)
                     })
                 }
+            }else {
+                completion(nil, false, message)
             }
-            
-            completion(nil, false)
-
         }
     }
     
     func registerUser(_ email: String, password: String, confirmPassword: String, completion: @escaping (_ message:String?, _ success: Bool) -> Void) {
         AirService.register(["email": email, "password": password, "passwordConfirm": confirmPassword]) { (success, message) in
             if success {
-                self.logingWithCredentials(email, password: password) { (result, hasDevice) in
+                self.logingWithCredentials(email, password: password) { (result, hasDevice, message) in
                     if result != nil {
                         completion("Logged in", true)
                     }else {

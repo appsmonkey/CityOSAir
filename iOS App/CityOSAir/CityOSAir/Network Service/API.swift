@@ -53,7 +53,7 @@ open class API {
         
     }
     
-    static func dataTask(_ endpoint: API.Endpoints, params: [String:AnyObject]?, completion: @escaping (_ success: Bool, _ json: JSON?) -> ())
+    static func dataTask(_ endpoint: API.Endpoints, params: [String:AnyObject]?, completion: @escaping (_ success: Bool, _ json: JSON?, _ statusCode: Int) -> ())
     {
         let request = NSMutableURLRequest(url: URL(string: endpoint.path)!)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -65,7 +65,7 @@ open class API {
                 let json = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions.init(rawValue: 0))
                 request.httpBody = json
             } catch {
-                completion(false, nil)
+                completion(false, nil, 0)
             }
         }
         
@@ -81,13 +81,16 @@ open class API {
                 
                 let json = JSON(data: data)
                 
-                if let response = response as? HTTPURLResponse , 200...299 ~= response.statusCode {
-                    completion(true, json)
-                } else {
-                    completion(false, nil)
+                if let response = response as? HTTPURLResponse {
+                    
+                    if 200...299 ~= response.statusCode {
+                    completion(true, json, response.statusCode)
+                    } else {
+                        completion(false, nil, response.statusCode)
+                    }
                 }
             }else {
-                completion(false, nil)
+                completion(false, nil, 0)
             }
         }) .resume()
     }

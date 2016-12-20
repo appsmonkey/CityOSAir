@@ -12,7 +12,7 @@ class AirService {
     
     static func login(_ params: [String: String], completion: @escaping (_ success: Bool, _ message: String, _ user: User?) -> ()) {
         
-        API.dataTask(API.Endpoints.login, params: params as [String : AnyObject]?) { (success, json) in
+        API.dataTask(API.Endpoints.login, params: params as [String : AnyObject]?) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 if success {
@@ -25,7 +25,13 @@ class AirService {
                     
                     completion(true, "Json parse failed", nil)
                 }else {
-                    completion(false, "Failed", nil)
+                    if statusCode == 401 {
+                        completion(false, "Please check your password", nil)
+                    }else if  statusCode == 404 {
+                        completion(false, "Please check your email", nil)
+                    }else {
+                        completion(false, "Something went wrong", nil)
+                    }
                 }
             }
         }
@@ -33,7 +39,7 @@ class AirService {
     
     static func register(_ params: [String: String], completion: @escaping (_ success: Bool, _ message: String) -> ()) {
         
-        API.dataTask(API.Endpoints.register, params: params as [String : AnyObject]?) { (success, json) in
+        API.dataTask(API.Endpoints.register, params: params as [String : AnyObject]?) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 if success {
@@ -47,7 +53,7 @@ class AirService {
     
     static func device(_ completion: @escaping (_ success: Bool, _ message: String, _ deviceID: Int?) -> ()) {
         
-        API.dataTask(API.Endpoints.device, params: nil) { (success, json) in
+        API.dataTask(API.Endpoints.device, params: nil) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 if success {
@@ -77,7 +83,7 @@ class AirService {
         
         params["location"] = location as AnyObject?
         
-        API.dataTask(API.Endpoints.deviceRegister, params: params) { (success, json) in
+        API.dataTask(API.Endpoints.deviceRegister, params: params) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 if success {
@@ -96,7 +102,7 @@ class AirService {
     }
     
     static func forgetDevice(_ deviceID: Int, completion: @escaping (_ success: Bool, _ message: String) -> ()) {
-        API.dataTask(API.Endpoints.forget(deviceID: deviceID), params: nil) { (success, json) in
+        API.dataTask(API.Endpoints.forget(deviceID: deviceID), params: nil) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 if success {
@@ -110,7 +116,7 @@ class AirService {
     
     static func latestReadings(_ deviceID: Int, completion: @escaping (_ success: Bool, _ message: String, _ readings: ReadingCollection?) -> ()) {
         
-        API.dataTask(API.Endpoints.readingsLatest(deviceID: deviceID), params: nil) { (success, json) in
+        API.dataTask(API.Endpoints.readingsLatest(deviceID: deviceID), params: nil) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 
@@ -149,7 +155,7 @@ class AirService {
     
     static func readingsForSensor(_ deviceID: Int, sensorID: Int, numberOfReadings: Int = 50, completion: @escaping (_ success: Bool, _ message: String, _ chartPoints: [ChartPoint]?) -> ()) {
         
-        API.dataTask(API.Endpoints.sensorReadings(deviceID: deviceID, sensorID: sensorID, numberOfReadings: numberOfReadings), params: nil) { (success, json) in
+        API.dataTask(API.Endpoints.sensorReadings(deviceID: deviceID, sensorID: sensorID, numberOfReadings: numberOfReadings), params: nil) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 if success {
