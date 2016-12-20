@@ -40,6 +40,7 @@ class GraphViewController: UIViewController {
         lbl.font = Styles.Graph.ReadingLabel.font
         lbl.textColor = Styles.Graph.ReadingLabel.tintColor
         lbl.textAlignment = .center
+        lbl.adjustsFontSizeToFitWidth = true
         return lbl
     }()
     
@@ -50,15 +51,17 @@ class GraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let readingType = reading.readingType {
-            header.text = readingType.identifier
-            subtitle.text = "(\(readingType.unitNotation))"
+        guard let readingType = reading.readingType else {
+            return
         }
+        
+        header.text = readingType.identifier
+        subtitle.text = "(\(readingType.unitNotation))"
         
         readingLabel.text = "\(reading.value)"
         
-        chartView = ChartView()
-        
+        chartView = ChartView(notation: "\(readingType.unitNotation)")
+
         if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value, let sensorID = reading.readingType?.rawValue {
             AirService.readingsForSensor(deviceID, sensorID: sensorID) { [weak self] (success, message, chartPoints) in
                 
@@ -85,8 +88,8 @@ class GraphViewController: UIViewController {
         view.addSubview(readingLabel)
         view.addSubview(chartView)
         
-        view.addConstraintsWithFormat("V:|-25-[v0]", views: closeBtn)
-        view.addConstraintsWithFormat("H:[v0]-15-|", views: closeBtn, header)
+        view.addConstraintsWithFormat("V:|-30-[v0(30)]", views: closeBtn)
+        view.addConstraintsWithFormat("H:[v0(30)]-15-|", views: closeBtn)
         
         view.addConstraintsWithFormat("V:[v0][v1]-10-[v2]-10-[v3]|", views: header, subtitle, readingLabel, chartView)
         
@@ -100,6 +103,9 @@ class GraphViewController: UIViewController {
         view.addConstraint(NSLayoutConstraint(item: subtitle, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0))
         
         view.addConstraint(NSLayoutConstraint(item: readingLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0))
+        
+        readingLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 8).isActive = true
+        readingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -8).isActive = true
 
     }
     

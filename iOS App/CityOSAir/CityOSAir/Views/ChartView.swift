@@ -47,10 +47,14 @@ class ChartView: UIView {
         chart.noDataText = "Fetching data . . ."
         chart.noDataTextColor = .white
         chart.chartDescription?.text = ""
-        chart.isUserInteractionEnabled = false
+        chart.isUserInteractionEnabled = true
         
         chart.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: self.numberFormatter)
-
+        
+        chart.marker = BalloonMarker(color: .white, font: UIFont.systemFont(ofSize: 12), textColor: .black, insets: UIEdgeInsets(top: 10, left: 10, bottom: 20, right: 10))
+        
+        chart.delegate = self
+        
         return chart
     }()
     
@@ -63,6 +67,10 @@ class ChartView: UIView {
         return formatter
     }()
     
+    fileprivate var timestamps = [String]()
+    
+    var notation: String!
+    
     func setupConstraints() {
         self.addSubview(chartView)
         
@@ -74,6 +82,8 @@ class ChartView: UIView {
         
         let dataPoints = chartPoints.map { $0.xLabel }
         let values = chartPoints.map { $0.value }
+        
+        timestamps = dataPoints
         
         let chartFormatter = ChartFormatter()
         chartFormatter.timestamps = dataPoints
@@ -96,6 +106,9 @@ class ChartView: UIView {
 
         lineChartDataSet.highlightColor = .white
         
+        lineChartDataSet.drawVerticalHighlightIndicatorEnabled = false
+        lineChartDataSet.drawHorizontalHighlightIndicatorEnabled = false
+        
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
         
         chartView.data = lineChartData
@@ -105,14 +118,27 @@ class ChartView: UIView {
         self.setupConstraints()
     }
     
-    init() {
+    init(notation: String) {
         super.init(frame: CGRect.zero)
         commonInit()
+        self.notation = notation
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+    }
+}
+
+extension ChartView: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        
+        let timestamp = timestamps[Int(entry.x)]
+        
+        if let marker = chartView.marker as? BalloonMarker {
+            marker.setLabel(timestamp, value: "\(entry.y)", notation: notation)
+        }
+        
     }
 }
 
