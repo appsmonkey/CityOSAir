@@ -31,6 +31,12 @@ class ConnectViewController: UIViewController {
     
     let data: [CellType] = [.wiFiName, .wiFiPassword, .bigBtn]
     
+    var task: ESPTouchTask?
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +45,8 @@ class ConnectViewController: UIViewController {
         setUI()
         
         manager.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelTask), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +55,11 @@ class ConnectViewController: UIViewController {
         if CLLocationManager.authorizationStatus() == .notDetermined || CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
             manager.requestWhenInUseAuthorization()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancelTask()
     }
     
     fileprivate func setUI() {
@@ -76,7 +89,7 @@ class ConnectViewController: UIViewController {
         
         self.view.endEditing(true)
         
-        startLoading(Text.ConnectWiFI.Messages.connecting)
+        startLoading(Text.ConnectWiFI.Messages.connecting, #selector(ConnectViewController.cancelTask))
         
         let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
         
@@ -194,12 +207,16 @@ extension ConnectViewController: UITableViewDelegate {
 
 extension ConnectViewController {
     
-    fileprivate func executeForResult() -> ESPTouchResult {
+    fileprivate func executeForResult() -> ESPTouchResult? {
+
+        task = ESPTouchTask(apSsid: UIDevice.SSID, andApBssid: UIDevice.BSSID, andApPwd: password, andIsSsidHiden: false)
         
-        let task = ESPTouchTask(apSsid: UIDevice.SSID, andApBssid: UIDevice.BSSID, andApPwd: password, andIsSsidHiden: false)
+        return task?.executeForResult()
         
-        return task!.executeForResult()
-        
+    }
+    
+    func cancelTask() {
+        task?.interrupt()
     }
 }
 
