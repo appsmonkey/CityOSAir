@@ -4,6 +4,8 @@ use_frameworks!
 target 'CityOSAir' do
     pod 'Charts'
     pod 'RealmSwift'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 post_install do |installer|
