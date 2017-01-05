@@ -20,6 +20,7 @@ class LogInViewController: UIViewController {
         table.delegate = self
         table.register(InputTableViewCell.self)
         table.register(BigButtonTableViewCell.self)
+        table.register(BigButtonSecondaryTableViewCell.self)
         table.register(SmallButtonTableViewCell.self)
         table.tableFooterView = UIView()
         table.separatorStyle = .none
@@ -28,7 +29,7 @@ class LogInViewController: UIViewController {
         return table
     }()
     
-    let data: [CellType] = [.email, .password, .bigBtn]
+    let data: [CellType] = [.email, .password, .smallBtn, .bigBtn, .bigBtnSecondary]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,13 @@ class LogInViewController: UIViewController {
         self.title = Text.LogIn.title
         
         setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+        
     }
     
     fileprivate func setUI() {
@@ -64,7 +72,7 @@ class LogInViewController: UIViewController {
                     if result != nil {
                         
                         if hasDevice {
-                            self?.navigationController?.pushViewController(DeviceViewController(), animated: true)
+                            self?.navigationController?.pushViewController(DeviceInfoViewController(), animated: true)
                         }else {
                             self?.navigationController?.pushViewController(ConnectIntroViewController(), animated: true)
                         }
@@ -120,6 +128,15 @@ extension LogInViewController: UITableViewDataSource {
         if cellType == CellType.bigBtn {
             
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as BigButtonTableViewCell
+            
+            cell.button.addTarget(self, action: #selector(LogInViewController.continuePressed), for: .touchUpInside)
+            
+            return cell
+        }
+        
+        if cellType == CellType.bigBtnSecondary {
+            
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as BigButtonSecondaryTableViewCell
             
             cell.button.addTarget(self, action: #selector(LogInViewController.continuePressed), for: .touchUpInside)
             

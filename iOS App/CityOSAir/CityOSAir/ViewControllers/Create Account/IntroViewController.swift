@@ -72,7 +72,7 @@ class IntroViewController: UIViewController {
     }
     
     func getStartedClicked() {
-        self.navigationController?.pushViewController(CreateAccountViewController(), animated: true)
+        self.navigationController?.pushViewController(LogInViewController(), animated: true)
     }
     
     fileprivate func getMargin() -> CGFloat {

@@ -1,22 +1,22 @@
 //
-//  BigButtonTableViewCell.swift
+//  BigButtonSecondaryTableViewCell.swift
 //  CityOSAir
 //
-//  Created by Andrej Saric on 28/08/16.
+//  Created by Andrej Saric on 27/12/2016.
 //  Copyright © 2016 CityOS. All rights reserved.
 //
 
 import UIKit
 
-class BigButtonTableViewCell: UITableViewCell {
+class BigButtonSecondaryTableViewCell: UITableViewCell {
     
     let button: UIButton = {
         let btn = UIButton()
         
-        btn.setTitle(Text.Buttons.continueBtn, for: UIControlState())
-        btn.backgroundColor = Styles.BigButton.backgroundColor
-        btn.tintColor = Styles.BigButton.tintColor
-        btn.titleLabel?.font = Styles.BigButton.font
+        btn.setTitle(Text.Buttons.noDeviceBtn, for: UIControlState())
+        btn.backgroundColor = Styles.BigButtonSecondary.backgroundColor
+        btn.tintColor = Styles.BigButtonSecondary.tintColor
+        btn.titleLabel?.font = Styles.BigButtonSecondary.font
         
         return btn
     }()
@@ -41,21 +41,17 @@ class BigButtonTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    fileprivate func initialize(backgroundColor: UIColor? = nil) {
-        
-        if let backgroundColor = backgroundColor {
-            button.backgroundColor = backgroundColor
-        }
+    fileprivate func initialize() {
         
         selectionStyle = .none
         
         contentView.addSubview(button)
         
-        contentView.addConstraintsWithFormat("V:|-20-[v0]-20-|", views: button)
+        contentView.addConstraintsWithFormat("V:|[v0]-40-|", views: button)
         contentView.addConstraintsWithFormat("H:|-20-[v0]-20-|", views: button)
         
     }
-
+    
 }
 
-extension BigButtonTableViewCell: Reusable {}
+extension BigButtonSecondaryTableViewCell: Reusable {}
