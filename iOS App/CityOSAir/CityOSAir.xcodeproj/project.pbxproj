@@ -29,6 +29,7 @@
 		77206B961D781F6A00D77312 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B951D781F6A00D77312 /* User.swift */; };
 		77206B981D78225700D77312 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B971D78225700D77312 /* UserManager.swift */; };
 		77206B9A1D7824B700D77312 /* AirService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77206B991D7824B700D77312 /* AirService.swift */; };
+		7721A4FF1E154D5A006FB450 /* AQITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7721A4FE1E154D5A006FB450 /* AQITableViewCell.swift */; };
 		774706041D738191005D4E3E /* SmallButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774706031D738191005D4E3E /* SmallButtonTableViewCell.swift */; };
 		774706061D738287005D4E3E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774706051D738287005D4E3E /* LogInViewController.swift */; };
 		774706081D7383E8005D4E3E /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774706071D7383E8005D4E3E /* ResetPassViewController.swift */; };
@@ -44,6 +45,13 @@
 		779DBFF21D730BE200623FFE /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF11D730BE200623FFE /* InputTableViewCell.swift */; };
 		779DBFF41D730BFF00623FFE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF31D730BFF00623FFE /* Enums.swift */; };
 		779DBFF61D730CFA00623FFE /* ConnectIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF51D730CFA00623FFE /* ConnectIntroViewController.swift */; };
+		779F11431E12739500213ACC /* BigButtonSecondaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779F11421E12739500213ACC /* BigButtonSecondaryTableViewCell.swift */; };
+		779F11461E12783100213ACC /* DeviceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779F11451E12783100213ACC /* DeviceInfoViewController.swift */; };
+		779F11481E12812400213ACC /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779F11471E12812400213ACC /* SlideMenuController.swift */; };
+		77B5D0DE1E13E17600D5DF55 /* ExtendedReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B5D0DD1E13E17600D5DF55 /* ExtendedReadingTableViewCell.swift */; };
+		77C1AED41E12978400B2C384 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1AED31E12978400B2C384 /* MenuViewController.swift */; };
+		77C52B1D1E156C5D00DCF615 /* AQI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C52B1C1E156C5D00DCF615 /* AQI.swift */; };
+		77C52B1F1E156E6A00DCF615 /* AQIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C52B1E1E156E6A00DCF615 /* AQIViewController.swift */; };
 		77D0D5E51D6F822F00D7199C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D0D5E41D6F822F00D7199C /* AppDelegate.swift */; };
 		77D0D5EC1D6F822F00D7199C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77D0D5EB1D6F822F00D7199C /* Assets.xcassets */; };
 		77D0D5EF1D6F822F00D7199C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D0D5ED1D6F822F00D7199C /* LaunchScreen.storyboard */; };
@@ -53,6 +61,9 @@
 		77D2E2E81D72DE5B00D012BC /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2E2E71D72DE5B00D012BC /* Styles.swift */; };
 		77D2E2EA1D72EBE000D012BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2E2E91D72EBE000D012BC /* Extensions.swift */; };
 		77D2E2ED1D72ECAD00D012BC /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D2E2EC1D72ECAD00D012BC /* Reusable.swift */; };
+		77DB9A991E1EE1EF004DFF3C /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */; };
+		77DB9A9B1E1EE24B004DFF3C /* CircularGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */; };
+		77DB9A9D1E1EF724004DFF3C /* GaugeStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */; };
 		EE742475B96CE2C48080D1FE /* Pods_CityOSAir.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6765CBADE61F6BF7BC92644D /* Pods_CityOSAir.framework */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +117,7 @@
 		77206B951D781F6A00D77312 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		77206B971D78225700D77312 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		77206B991D7824B700D77312 /* AirService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirService.swift; sourceTree = "<group>"; };
+		7721A4FE1E154D5A006FB450 /* AQITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQITableViewCell.swift; sourceTree = "<group>"; };
 		774706031D738191005D4E3E /* SmallButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallButtonTableViewCell.swift; sourceTree = "<group>"; };
 		774706051D738287005D4E3E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		774706071D7383E8005D4E3E /* ResetPassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
@@ -116,11 +128,18 @@
 		777CD3481D742EE90011BDC2 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTableViewCell.swift; sourceTree = "<group>"; };
 		77868B181D78868E00CD2DBA /* Readings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readings.swift; sourceTree = "<group>"; };
-		778DD3591D73416600221A5B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		778DD3591D73416600221A5B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateAccountViewController.swift; path = "Create Account/CreateAccountViewController.swift"; sourceTree = "<group>"; };
 		779DBFEF1D730A4500623FFE /* BigButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButtonTableViewCell.swift; sourceTree = "<group>"; };
 		779DBFF11D730BE200623FFE /* InputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		779DBFF31D730BFF00623FFE /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		779DBFF51D730CFA00623FFE /* ConnectIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectIntroViewController.swift; sourceTree = "<group>"; };
+		779F11421E12739500213ACC /* BigButtonSecondaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButtonSecondaryTableViewCell.swift; sourceTree = "<group>"; };
+		779F11451E12783100213ACC /* DeviceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoViewController.swift; sourceTree = "<group>"; };
+		779F11471E12812400213ACC /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		77B5D0DD1E13E17600D5DF55 /* ExtendedReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedReadingTableViewCell.swift; sourceTree = "<group>"; };
+		77C1AED31E12978400B2C384 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		77C52B1C1E156C5D00DCF615 /* AQI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQI.swift; sourceTree = "<group>"; };
+		77C52B1E1E156E6A00DCF615 /* AQIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQIViewController.swift; sourceTree = "<group>"; };
 		77D0D5E11D6F822E00D7199C /* CityOSAir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityOSAir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D0D5E41D6F822F00D7199C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77D0D5EB1D6F822F00D7199C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -134,6 +153,9 @@
 		77D2E2E71D72DE5B00D012BC /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		77D2E2E91D72EBE000D012BC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		77D2E2EC1D72ECAD00D012BC /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
+		77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularGaugeView.swift; sourceTree = "<group>"; };
+		77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeStates.swift; sourceTree = "<group>"; };
 		93995C77BDE858D5588A8707 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52E511389137F4B29518F7F /* Pods-CityOSAir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityOSAir.release.xcconfig"; path = "Pods/Target Support Files/Pods-CityOSAir/Pods-CityOSAir.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				77D0D6051D6F827200D7199C /* IntroViewController.swift */,
-				778DD3591D73416600221A5B /* CreateAccountViewController.swift */,
 			);
 			path = "Create Account";
 			sourceTree = "<group>";
@@ -206,6 +227,8 @@
 			children = (
 				77065E0C1D7450C700960AA5 /* ChartView.swift */,
 				776E62E41E089B5200A9372A /* BalloonMarker.swift */,
+				77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */,
+				77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +240,8 @@
 				77868B181D78868E00CD2DBA /* Readings.swift */,
 				771B71031D7AD34D002BE008 /* ChartPoint.swift */,
 				7768EF4C1DCF6CE500AC1775 /* ReadingCollection.swift */,
+				77C52B1C1E156C5D00DCF615 /* AQI.swift */,
+				77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,8 +297,30 @@
 				779DBFF11D730BE200623FFE /* InputTableViewCell.swift */,
 				774706031D738191005D4E3E /* SmallButtonTableViewCell.swift */,
 				777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */,
+				779F11421E12739500213ACC /* BigButtonSecondaryTableViewCell.swift */,
+				77B5D0DD1E13E17600D5DF55 /* ExtendedReadingTableViewCell.swift */,
+				7721A4FE1E154D5A006FB450 /* AQITableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		779F11411E1270C800213ACC /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				77065DEC1D74458E00960AA5 /* Connect Device */,
+				778DD3591D73416600221A5B /* CreateAccountViewController.swift */,
+			);
+			name = Unused;
+			sourceTree = "<group>";
+		};
+		779F11441E12763100213ACC /* ViewControllers@V2 */ = {
+			isa = PBXGroup;
+			children = (
+				779F11451E12783100213ACC /* DeviceInfoViewController.swift */,
+				77C1AED31E12978400B2C384 /* MenuViewController.swift */,
+				77C52B1E1E156E6A00DCF615 /* AQIViewController.swift */,
+			);
+			name = "ViewControllers@V2";
 			sourceTree = "<group>";
 		};
 		77D0D5D81D6F822E00D7199C = {
@@ -304,6 +351,7 @@
 				77206B9B1D783CF300D77312 /* Network Service */,
 				77D2E2E41D72D1AF00D012BC /* Utils */,
 				779DBFEE1D7309E600623FFE /* Cells */,
+				779F11441E12763100213ACC /* ViewControllers@V2 */,
 				77D0D6041D6F825C00D7199C /* ViewControllers */,
 				77206B8D1D78129500D77312 /* Views */,
 				77206B8E1D7812A800D77312 /* Models */,
@@ -327,10 +375,10 @@
 		77D0D6041D6F825C00D7199C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				779F11411E1270C800213ACC /* Unused */,
 				77065DEF1D7445C100960AA5 /* Device Settings */,
 				77065DEE1D7445B500960AA5 /* Device Data Display */,
 				77065DED1D7445A500960AA5 /* Login */,
-				77065DEC1D74458E00960AA5 /* Connect Device */,
 				77065DEB1D74455700960AA5 /* Create Account */,
 			);
 			path = ViewControllers;
@@ -346,6 +394,7 @@
 				779DBFF31D730BFF00623FFE /* Enums.swift */,
 				77206B971D78225700D77312 /* UserManager.swift */,
 				7768EF4A1DCF5F8800AC1775 /* Cache.swift */,
+				779F11471E12812400213ACC /* SlideMenuController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -548,15 +597,19 @@
 				77D2E2ED1D72ECAD00D012BC /* Reusable.swift in Sources */,
 				77065DF31D744A3600960AA5 /* GraphViewController.swift in Sources */,
 				77206B981D78225700D77312 /* UserManager.swift in Sources */,
+				77C1AED41E12978400B2C384 /* MenuViewController.swift in Sources */,
+				779F11481E12812400213ACC /* SlideMenuController.swift in Sources */,
 				777CD3491D742EE90011BDC2 /* DeviceViewController.swift in Sources */,
 				7713ADC21DC67F3B004EFC0B /* ESPUDPSocketClient.m in Sources */,
 				77868B191D78868E00CD2DBA /* Readings.swift in Sources */,
 				7713ADBB1DC67F3B004EFC0B /* ESPDataCode.m in Sources */,
 				7713ADC01DC67F3B004EFC0B /* ESPTouchTask.m in Sources */,
+				7721A4FF1E154D5A006FB450 /* AQITableViewCell.swift in Sources */,
 				77D2E2EA1D72EBE000D012BC /* Extensions.swift in Sources */,
 				7768EF4D1DCF6CE500AC1775 /* ReadingCollection.swift in Sources */,
 				77206B941D781B2F00D77312 /* API.swift in Sources */,
 				77206B9A1D7824B700D77312 /* AirService.swift in Sources */,
+				77DB9A991E1EE1EF004DFF3C /* KDCircularProgress.swift in Sources */,
 				774706041D738191005D4E3E /* SmallButtonTableViewCell.swift in Sources */,
 				77065DF11D74460B00960AA5 /* SettingsViewController.swift in Sources */,
 				77D0D5E51D6F822F00D7199C /* AppDelegate.swift in Sources */,
@@ -564,9 +617,14 @@
 				7713ADC11DC67F3B004EFC0B /* ESPTouchTaskParameter.m in Sources */,
 				77206B921D781A8000D77312 /* SwiftyJSON.swift in Sources */,
 				7768EF4B1DCF5F8800AC1775 /* Cache.swift in Sources */,
+				77C52B1D1E156C5D00DCF615 /* AQI.swift in Sources */,
 				7713ADB81DC67F3B004EFC0B /* ESP_CRC8.m in Sources */,
+				77B5D0DE1E13E17600D5DF55 /* ExtendedReadingTableViewCell.swift in Sources */,
+				77DB9A9D1E1EF724004DFF3C /* GaugeStates.swift in Sources */,
+				779F11431E12739500213ACC /* BigButtonSecondaryTableViewCell.swift in Sources */,
 				7713ADBA1DC67F3B004EFC0B /* ESP_WifiUtil.m in Sources */,
 				779DBFF01D730A4500623FFE /* BigButtonTableViewCell.swift in Sources */,
+				77C52B1F1E156E6A00DCF615 /* AQIViewController.swift in Sources */,
 				77206B961D781F6A00D77312 /* User.swift in Sources */,
 				771B71041D7AD34D002BE008 /* ChartPoint.swift in Sources */,
 				77D2E2E61D72D1ED00D012BC /* Text.swift in Sources */,
@@ -577,10 +635,12 @@
 				774706061D738287005D4E3E /* LogInViewController.swift in Sources */,
 				777CD34B1D742F040011BDC2 /* ReadingTableViewCell.swift in Sources */,
 				779DBFF41D730BFF00623FFE /* Enums.swift in Sources */,
+				77DB9A9B1E1EE24B004DFF3C /* CircularGaugeView.swift in Sources */,
 				7713ADB71DC67F3B004EFC0B /* ESP_ByteUtil.m in Sources */,
 				774706081D7383E8005D4E3E /* ResetPassViewController.swift in Sources */,
 				7713ADBF1DC67F3B004EFC0B /* ESPTouchResult.m in Sources */,
 				776E62E51E089B5200A9372A /* BalloonMarker.swift in Sources */,
+				779F11461E12783100213ACC /* DeviceInfoViewController.swift in Sources */,
 				77065E0D1D7450C700960AA5 /* ChartView.swift in Sources */,
 				779DBFF61D730CFA00623FFE /* ConnectIntroViewController.swift in Sources */,
 				77D2E2E81D72DE5B00D012BC /* Styles.swift in Sources */,

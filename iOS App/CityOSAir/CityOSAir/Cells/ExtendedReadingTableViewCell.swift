@@ -1,15 +1,15 @@
 //
-//  ReadingTableViewCell.swift
+//  ExtendedReadingTableViewCell.swift
 //  CityOSAir
 //
-//  Created by Andrej Saric on 29/08/16.
+//  Created by Andrej Saric on 28/12/2016.
 //  Copyright © 2016 CityOS. All rights reserved.
 //
 
 import UIKit
 
-class ReadingTableViewCell: UITableViewCell {
-
+class ExtendedReadingTableViewCell: UITableViewCell {
+    
     let typeImage: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFit
@@ -34,6 +34,13 @@ class ReadingTableViewCell: UITableViewCell {
         let lbl = UILabel()
         lbl.font = Styles.DataCell.NotationLabel.identifierFont
         lbl.textColor = Styles.DataCell.NotationLabel.tintColor
+        return lbl
+    }()
+    
+    let flagLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = Styles.DataCell.IdentifierLabel.font
+        lbl.textColor = Styles.DataCell.IdentifierLabel.tintColor
         return lbl
     }()
     
@@ -84,24 +91,29 @@ class ReadingTableViewCell: UITableViewCell {
         contentView.addSubview(identifierLabel)
         contentView.addSubview(readingLabel)
         contentView.addSubview(notationLabel)
-
+        contentView.addSubview(flagLabel)
+        
         contentView.addConstraintsWithFormat("H:|-15-[v0(30)]-15-[v1]", views: typeImage, identifierLabel)
         contentView.addConstraintsWithFormat("H:[v0][v1]-15-[v2]-25-|", views: readingLabel, notationLabel, rightArrow)
         
-        contentView.addConstraint(NSLayoutConstraint(item: typeImage, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
+        contentView.addConstraint(NSLayoutConstraint(item: identifierLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: -15))
         
-        contentView.addConstraint(NSLayoutConstraint(item: identifierLabel, attribute: .centerY, relatedBy: .equal, toItem: typeImage, attribute: .centerY, multiplier: 1, constant: 0))
+        contentView.addConstraint(NSLayoutConstraint(item: typeImage, attribute: .centerY, relatedBy: .equal, toItem: identifierLabel, attribute: .centerY, multiplier: 1, constant: 0))
+        
+        contentView.addConstraint(NSLayoutConstraint(item: flagLabel, attribute: .centerY, relatedBy: .equal, toItem: typeImage, attribute: .centerY, multiplier: 1, constant: 15))
+        
+        contentView.addConstraint(NSLayoutConstraint(item: flagLabel, attribute: .leading, relatedBy: .equal, toItem: identifierLabel, attribute: .leading, multiplier: 1, constant: 0))
 
-        contentView.addConstraint(NSLayoutConstraint(item: readingLabel, attribute: .centerY, relatedBy: .equal, toItem: typeImage, attribute: .centerY, multiplier: 1, constant: 0))
-
+        contentView.addConstraint(NSLayoutConstraint(item: readingLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
+        
         contentView.addConstraint(NSLayoutConstraint(item: notationLabel, attribute: .lastBaseline, relatedBy: .equal, toItem: readingLabel, attribute: .lastBaseline, multiplier: 1, constant: 0))
         
-        contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .centerY, relatedBy: .equal, toItem: typeImage, attribute: .centerY, multiplier: 1, constant: 0))
+        contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
         
         //contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .top, relatedBy: .equal, toItem: notationLabel, attribute: .top, multiplier: 1, constant: 0))
         //contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .bottom, relatedBy: .equal, toItem: notationLabel, attribute: .bottom, multiplier: 1, constant: 0))
-        
+
     }
 }
 
-extension ReadingTableViewCell: Reusable {}
+extension ExtendedReadingTableViewCell: Reusable {}
