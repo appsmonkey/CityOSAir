@@ -10,8 +10,20 @@ import Foundation
 
 struct Text {
     
+    struct Menu {
+        static let cityAir = "Sarajevo Air"
+        static let cityMap = "Air Map"
+        static let logIn = "Log into device"
+        static let aqiPM10 = "PM₁₀ Index"
+        static let aqiPM25 = "PM2.5 Index"
+        static let settings = "Settings"
+
+    }
+    
     struct Buttons {
+        static let loginBtn = "Log In"
         static let continueBtn = "Continue"
+        static let noDeviceBtn = "I don't have a device"
     }
     
     struct Placeholders {
@@ -85,7 +97,7 @@ struct Text {
     
     struct LogIn {
         
-        static let title = "Log In"
+        static let title = "Log Into Device"
         
         struct Buttons {
             static let forgotPassword = "Forgot Password?"
@@ -107,8 +119,49 @@ struct Text {
     }
     
     struct Readings {
-        static let title = "My Air"
+        static let title = "Sarajevo Air"
         static let subtitle = "Updated "
+    }
+    
+    struct Settings {
+        static let title = "Settings"
+        static let logout = "Logout"
+        static let login = "Login"
+        static let notificationsTitle = "Notifications"
+        static let notificationsDetail = "Recieve bad air alerts"
+        static let notificationsOn = "On"
+        static let notificationsOff = "Off"
+        static let notifyMe = "Notify me when air is:"
+        
+        struct AirAlerts {
+            static let title = "Air Alerts"
+            static let good = "Good"
+            static let moderate = "Moderate"
+            static let sensitive = "Unhealthy for sensitive"
+            static let unhealthy = "Unhealthy"
+            static let veryUnhealthy = "Very Unhealthy"
+            static let hazardous = "Hazardous"
+            static let footer = "Alerts are sent once a day per pollution level."
+        }
+    }
+    
+    struct PM10 {
+        static let title = "PM₁₀ Index"
+        static let subtitle = "These are the PM₁₀ index values based on USA EPA\n and are based on a 24-hour average."
+    }
+    
+    struct PM25 {
+        static let title = "PM2.5 Index"
+        static let subtitle = "These are the PM2.5 index values based on USA EPA\n and are based on a 24-hour average."
+    }
+    
+    struct Ribbons {
+        static let great = "GREAT"
+        static let ok = "OK"
+        static let sensitive = "SENSITIVE BEWARE"
+        static let unhealthy = "UNHEALTHY"
+        static let veryUnhealthy = "VERY UNHEALTHY"
+        static let hazardous = "HAZARDOUS"
     }
 }
 

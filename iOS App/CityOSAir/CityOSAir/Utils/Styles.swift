@@ -36,14 +36,34 @@ struct Styles {
         
         struct HeaderText {
             static let font = UIFont.appRegularWithSize(16.5)
-            static let tintColor = Colors.white
+            static let subscriptFont = UIFont.appRegularWithSize(16.5/2)
+            static let tintColor = UIColor.gray
         }
         
         struct SubtitleText {
             static let font = UIFont.appRegularWithSize(7.5)
-            static let tintColor = UIColor.fromHex("61fffb")
+            static let subscriptFont = UIFont.appRegularWithSize(7.5/2)
+            static let tintColor = UIColor.lightGray
         }
         
+    }
+    
+    struct DetailStates {
+        static let greatColor = UIColor.fromHex("75e2ea")
+        static let okColor = UIColor.fromHex("a1d78b")
+        static let sensitiveColor = UIColor.fromHex("f8e88b")
+        static let unhealthyColor = UIColor.fromHex("f8ab73")
+        static let veryUnhealthyColor = UIColor.fromHex("d174c5")
+        static let hazardousColor = UIColor.fromHex("f95356")
+    }
+    
+    struct LabelStates {
+        static let greatColor = UIColor.fromHex("02b8bc")
+        static let okColor = UIColor.fromHex("68a82a")
+        static let sensitiveColor = UIColor.fromHex("eabc28")
+        static let unhealthyColor = UIColor.fromHex("ff8931")
+        static let veryUnhealthyColor = UIColor.fromHex("d816bd")
+        static let hazardousColor = UIColor.fromHex("f6263d")
     }
     
     struct Graph {
@@ -74,10 +94,28 @@ struct Styles {
         static let tintColor = UIColor.fromHex("4a4a4a")
     }
     
+    struct MenuButtonBig {
+        static let font = UIFont.appRegularWithSize(15)
+        static let tintColor = UIColor.fromHex("ffffff")
+        static let choosenTintColor = UIColor.fromHex("2eeaff")
+    }
+    
+    struct MenuButtonSmall {
+        static let font = UIFont.appRegularWithSize(12)
+        static let subscriptFont = UIFont.appRegularWithSize(12/2)
+        static let tintColor = UIColor.fromHex("c9c9c9")
+    }
+    
     struct BigButton {
         static let font = UIFont.appRegularWithSize(14.5)
         static let tintColor = Colors.white
         static let backgroundColor = UIColor.fromHex("45cfdc")
+    }
+    
+    struct BigButtonSecondary {
+        static let font = UIFont.appRegularWithSize(14.5)
+        static let tintColor = Colors.white
+        static let backgroundColor = UIColor.lightGray
     }
     
     struct SmallButton {
@@ -96,17 +134,17 @@ struct Styles {
         struct IdentifierLabel {
             static let font = UIFont.appRegularWithSize(9.18)
             static let subscriptFont = UIFont.appRegularWithSize(9.18/2)
-            static let tintColor = Colors.white
+            static let tintColor = UIColor.black
         }
         
         struct ReadingLabel {
             static let numberFont = UIFont.appRegularWithSize(10.5)
-            static let tintColor = UIColor.fromHex("61fffb")
+            static let tintColor = UIColor.lightGray//UIColor.fromHex("61fffb")
         }
         
         struct NotationLabel {
             static let identifierFont = UIFont.appRegularWithSize(6.5)
-            static let tintColor = UIColor.fromHex("61fffb")
+            static let tintColor = UIColor.lightGray//UIColor.fromHex("61fffb")
         }
         
     }
@@ -127,7 +165,7 @@ struct Styles {
         let delta = UIDevice.delta
         
         switch cellType {
-        case .bigBtn:
+        case .bigBtn, .bigBtnSecondary:
 //            let size = 50 * delta
             return 100//size < 80 ? 80 : size//100
         case .password, .email, .confirmPassword , .wiFiName, .wiFiPassword:
