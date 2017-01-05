@@ -26,21 +26,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = self.window {
             
-            let navigationController = UINavigationController(rootViewController: IntroViewController())
-            navigationController.interactivePopGestureRecognizer?.isEnabled = false
             
-            if let user = UserManager.sharedInstance.getLoggedInUser() {
+            if !UserDefaults.standard.isAppAlreadyLaunchedOnce() {
                 
-                UserManager.sharedInstance.logingWithCredentials(user.email, password: user.password, completion: {_,_,_ in })
+                let navigationController = UINavigationController(rootViewController: LogInViewController())
+                navigationController.interactivePopGestureRecognizer?.isEnabled = false
+                window.rootViewController = navigationController
+
+            }else {
                 
-                if user.deviceId.value != nil {
-                    navigationController.viewControllers.append(DeviceViewController())
-                } else {
-                    navigationController.viewControllers.append(ConnectIntroViewController())
+                if let user = UserManager.sharedInstance.getLoggedInUser() {
+                    
+                    UserManager.sharedInstance.logingWithCredentials(user.email, password: user.password, completion: {_,_,_ in })
+                    
+//                    if user.deviceId.value != nil {
+//                        let slideMenuViewController = SlideMenuController(mainViewController: DeviceInfoViewController(), leftMenuViewController: MenuViewController())
+//                        navigationController.viewControllers.append(slideMenuViewController)
+//                    } else {
+//                        navigationController.viewControllers.append(ConnectIntroViewController())
+//                    }
                 }
+                
+                let slideMenuViewController = SlideMenuController(mainViewController: DeviceInfoViewController(), leftMenuViewController: MenuViewController())
+                SlideMenuOptions.contentViewScale = 1
+                SlideMenuOptions.hideStatusBar = false
+                window.rootViewController = slideMenuViewController
             }
             
-            window.rootViewController = navigationController
+            
+            
             window.makeKeyAndVisible()
         }
         
