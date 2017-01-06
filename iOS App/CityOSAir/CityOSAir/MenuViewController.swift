@@ -31,7 +31,7 @@ class MenuViewController: UIViewController {
         return table
     }()
     
-    var first = [MenuCells.cityAir, MenuCells.cityMap]
+    var first = [MenuCells.cityAir] //MenuCells.cityMap
     var second = [MenuCells.aqiPM10, MenuCells.aqiPM25, MenuCells.settings]
     
     override func viewDidLoad() {
@@ -43,9 +43,20 @@ class MenuViewController: UIViewController {
         setUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     fileprivate func setupSections() {
-        if let _ = UserManager.sharedInstance.getLoggedInUser() {
-            //add user devices to first
+        if let devices = Cache.sharedCache.getDeviceCollection()  {
+            for device in devices {
+                
+                if device.identification == MenuCells.cityAir.text {
+                    continue
+                }
+                
+                first.append(MenuCells.cityDevice(name: device.identification))
+            }
         } else {
             second.append(MenuCells.logIn)
             second.reverse()
@@ -169,9 +180,23 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             self.show(SettingsViewController(), sender: self)
         case .logIn:
             self.navigationController?.pushViewController(LogInViewController(), animated: true)
+        case .cityDevice(let name):
+            transitionToDevice(name: name)
+        case .cityAir:
+            transitionToDevice(name: Text.Readings.title)
         default:
             break
         }
+    }
+    
+    fileprivate func transitionToDevice(name: String) {
+        
+        guard let device = Cache.sharedCache.getDeviceForIdentifier(identifier: name) ,let current = self.slideMenuController()?.mainViewController as? DeviceInfoViewController else {
+            return
+        }
+        current.device = device
+        
+        closePressed()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -119,8 +119,8 @@ class ConnectViewController: UIViewController {
                     if success {
                         
                         if let id = deviceID {
-                            
-                            UserManager.sharedInstance.associateDeviceWithUser(id)
+                            print(id)
+//                            UserManager.sharedInstance.associateDeviceWithUser(id)
                             
                             self?.alert(result.description, message: nil, close: "OK", closeHandler: { action in
                                 self?.navigationController?.pushViewController(DeviceViewController(), animated: true)

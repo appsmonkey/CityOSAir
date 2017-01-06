@@ -33,27 +33,27 @@ class UserManager {
         }
     }
     
-    @discardableResult func associateDeviceWithUser(_ deviceID: Int) -> User? {
-        
-        let user = self.realm.objects(User.self).first
-        
-        try! self.realm.write {
-            user!.deviceId.value = deviceID
-        }
-        
-        return user
-    }
-    
-    @discardableResult func deAssociateDeviceWithUser() -> User? {
-        
-        let user = self.realm.objects(User.self).first
-        
-        try! self.realm.write {
-            user!.deviceId.value = nil
-        }
-        
-        return user
-    }
+//    @discardableResult func associateDeviceWithUser(_ deviceID: Int) -> User? {
+//        
+//        let user = self.realm.objects(User.self).first
+//        
+//        try! self.realm.write {
+//            user!.deviceId.value = deviceID
+//        }
+//        
+//        return user
+//    }
+//    
+//    @discardableResult func deAssociateDeviceWithUser() -> User? {
+//        
+//        let user = self.realm.objects(User.self).first
+//        
+//        try! self.realm.write {
+//            user!.deviceId.value = nil
+//        }
+//        
+//        return user
+//    }
     
     func logingWithCredentials(_ email:String, password:String, completion: @escaping (_ result:User?, _ hasDevice: Bool, _ message: String) -> Void) {
         
@@ -72,11 +72,11 @@ class UserManager {
                         self.realm.add(usr, update: true)
                     }
                     
-                    AirService.device({ (success, message, deviceID) in
+                    AirService.device({ (success, message, devices) in
                         if success {
                             
-                            if let id = deviceID {
-                                let user = self.associateDeviceWithUser(id)
+                            if let devices = devices {
+                                Cache.sharedCache.saveDevices(deviceCollection: devices)
                                 completion(user, true, message)
                                 return
                             }

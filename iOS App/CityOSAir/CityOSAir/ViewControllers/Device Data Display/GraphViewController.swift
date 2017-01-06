@@ -48,6 +48,8 @@ class GraphViewController: UIViewController {
     
     var reading: Reading!
     
+    var deviceId: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +64,7 @@ class GraphViewController: UIViewController {
         
         chartView = ChartView(notation: "\(readingType.unitNotation)")
 
-        if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value, let sensorID = reading.readingType?.rawValue {
+        if let deviceID = deviceId, let sensorID = reading.readingType?.rawValue {
             AirService.readingsForSensor(deviceID, sensorID: sensorID) { [weak self] (success, message, chartPoints) in
                 
                 if success {

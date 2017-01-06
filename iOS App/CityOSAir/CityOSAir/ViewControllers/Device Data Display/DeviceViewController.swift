@@ -10,6 +10,8 @@ import UIKit
 
 class DeviceViewController: UIViewController {
 
+    var device: Device?
+    
     lazy var tableView: UITableView = {
         let table = UITableView()
         
@@ -113,7 +115,7 @@ class DeviceViewController: UIViewController {
     }
     
     func refreshData() {
-        if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value {
+        if let deviceID = device?.id {
             AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
                 if let readingCollection = readingCollection {
                     self?.readingCollection = readingCollection
@@ -124,7 +126,7 @@ class DeviceViewController: UIViewController {
     
     func refresh(_ sender: UIRefreshControl) {
         sender.isEnabled = false
-        if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value {
+        if let deviceID = device?.id {
             AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
 
                 if let readingCollection = readingCollection {

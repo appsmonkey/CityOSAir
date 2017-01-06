@@ -10,6 +10,19 @@ import UIKit
 
 class DeviceInfoViewController: UIViewController {
     
+    var device: Device? {
+        didSet {
+            guard let device = device else {
+                return
+            }
+            
+            readingCollection = Cache.sharedCache.getReadingCollectionForDevice(deviceId: device.id)
+            header.text = device.identification
+            
+            refreshData()
+        }
+    }
+    
     lazy var tableView: UITableView = {
         let table = UITableView()
         
@@ -43,7 +56,7 @@ class DeviceInfoViewController: UIViewController {
         let lbl = UILabel()
         lbl.font = Styles.Detail.HeaderText.font
         lbl.textColor = Styles.Detail.HeaderText.tintColor
-        lbl.text = Text.Readings.title
+//        lbl.text = Text.Readings.title
         return lbl
     }()
     
@@ -64,7 +77,11 @@ class DeviceInfoViewController: UIViewController {
     var readingCollection: ReadingCollection? {
         didSet {
             
-            self.readings = Array(readingCollection!.realmReadings)
+            guard let readingCollection = readingCollection else {
+                return
+            }
+            
+            self.readings = Array(readingCollection.realmReadings)
             
             tableView.reloadData()
             
@@ -72,7 +89,13 @@ class DeviceInfoViewController: UIViewController {
             formatter.dateStyle = .short
             formatter.timeStyle = .short
             
-            timeStamp.text = "\(Text.Readings.subtitle) \(formatter.string(from: readingCollection!.lastUpdated))"
+            timeStamp.text = "\(Text.Readings.subtitle) \(formatter.string(from: readingCollection.lastUpdated))"
+            
+            
+            let config = GaugeStates.getConfigForValue(pm10Value: readingCollection.getReadingValue(type: .pm10), pm25Value: readingCollection.getReadingValue(type: .pm25))
+            
+            circularGaugeView.isHidden = false
+            circularGaugeView.configureWith(config: config)
         }
     }
     
@@ -139,15 +162,10 @@ class DeviceInfoViewController: UIViewController {
     }
     
     func refreshData() {
-        if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value {
+        if let deviceID = device?.id {
             AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
                 if let readingCollection = readingCollection {
                     self?.readingCollection = readingCollection
-                    
-                    
-                    //DEMO
-                    self?.circularGaugeView.isHidden = false
-                    self?.circularGaugeView.configureWith(config: GaugeStates.sensitive)
                 }
             }
         }
@@ -156,10 +174,7 @@ class DeviceInfoViewController: UIViewController {
     func refresh(_ sender: UIRefreshControl) {
         sender.isEnabled = false
 
-        //DEMO
-        self.circularGaugeView.configureWith(config: GaugeStates.veryUnhealthy)
-        
-        if let deviceID = UserManager.sharedInstance.getLoggedInUser()!.deviceId.value {
+        if let deviceID = device?.id {
             AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
                 
                 if let readingCollection = readingCollection {
@@ -188,7 +203,7 @@ extension DeviceInfoViewController: UITableViewDelegate, UITableViewDataSource {
         
         let reading = readings[(indexPath as NSIndexPath).row]
         
-        cell.configure(reading.readingType!, value: "\(reading.value)")
+        cell.configure(reading.readingType!, value: "\(reading.value.roundTo(places: 1))")
         
         return cell
     }

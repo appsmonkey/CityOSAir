@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum AQIType {
-    case pm10
-    case pm25
-}
-
 class AQIViewController: UIViewController {
 
     var aqiType: AQIType = AQIType.pm10
