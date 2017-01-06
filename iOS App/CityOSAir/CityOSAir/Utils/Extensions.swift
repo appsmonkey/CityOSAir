@@ -9,6 +9,31 @@
 import UIKit
 import SystemConfiguration.CaptiveNetwork
 
+import RealmSwift
+
+import RealmSwift
+
+extension Results {
+    
+    func toArray() -> [T] {
+        return self.map{$0}
+    }
+}
+
+extension RealmSwift.List {
+    
+    func toArray() -> [T] {
+        return self.map{$0}
+    }
+}
+
+extension Double {
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
 extension UserDefaults {
     func isAppAlreadyLaunchedOnce() -> Bool{
         let defaults = UserDefaults.standard

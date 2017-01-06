@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        
         Fabric.with([Crashlytics.self])
+        
+        realmMigration()
         
         setGlobalAppearance()
         
@@ -29,25 +32,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if !UserDefaults.standard.isAppAlreadyLaunchedOnce() {
                 
+                Cache.sharedCache.saveDevices(deviceCollection: [])
+                
                 let navigationController = UINavigationController(rootViewController: LogInViewController())
                 navigationController.interactivePopGestureRecognizer?.isEnabled = false
                 window.rootViewController = navigationController
 
             }else {
                 
+                let deviceVC = DeviceInfoViewController()
+                
+                deviceVC.device = Cache.sharedCache.getDeviceCollection()?.first
+
                 if let user = UserManager.sharedInstance.getLoggedInUser() {
                     
+                    //getting new token
                     UserManager.sharedInstance.logingWithCredentials(user.email, password: user.password, completion: {_,_,_ in })
-                    
-//                    if user.deviceId.value != nil {
-//                        let slideMenuViewController = SlideMenuController(mainViewController: DeviceInfoViewController(), leftMenuViewController: MenuViewController())
-//                        navigationController.viewControllers.append(slideMenuViewController)
-//                    } else {
-//                        navigationController.viewControllers.append(ConnectIntroViewController())
-//                    }
+                
                 }
                 
-                let slideMenuViewController = SlideMenuController(mainViewController: DeviceInfoViewController(), leftMenuViewController: MenuViewController())
+                let slideMenuViewController = SlideMenuController(mainViewController: deviceVC, leftMenuViewController: MenuViewController())
                 SlideMenuOptions.contentViewScale = 1
                 SlideMenuOptions.hideStatusBar = false
                 window.rootViewController = slideMenuViewController
@@ -80,6 +84,34 @@ extension AppDelegate {
         
         //hide back button text
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
+    }
+    
+    fileprivate func realmMigration() {
+        
+        Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
+        
+        let config = Realm.Configuration(
+        // Set the new schema version. This must be greater than the previously used
+        // version (if you've never set a schema version before, the version is 0).
+        schemaVersion: 1,
+        
+        // Set the block which will be called automatically when opening a Realm with
+        // a schema version lower than the one set above
+        migrationBlock: { migration, oldSchemaVersion in
+        // We haven’t migrated anything yet, so oldSchemaVersion == 0
+        if (oldSchemaVersion < 1) {
+        // Nothing to do!
+        // Realm will automatically detect new properties and removed properties
+        // And will update the schema on disk automatically
+        }
+        })
+        
+        // Tell Realm to use this new configuration object for the default Realm
+        Realm.Configuration.defaultConfiguration = config
+        
+        // Now that we've told Realm how to handle the schema change, opening the file
+        // will automatically perform the migration
+        let _ = try! Realm()
     }
 }
 

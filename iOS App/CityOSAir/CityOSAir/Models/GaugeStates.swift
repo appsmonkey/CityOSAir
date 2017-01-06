@@ -20,4 +20,47 @@ struct GaugeStates {
     static let veryUnhealthy = GaugeConfig(progressColor: Styles.DetailStates.veryUnhealthyColor, maxValue: 500, progressValue: 300, ribbonText: Text.Ribbons.veryUnhealthy, ribbonImage: #imageLiteral(resourceName: "ribbon-veryunhealthy"), centerImage: #imageLiteral(resourceName: "status-veryunhealthy-black"))
     
     static let hazardous = GaugeConfig(progressColor: Styles.DetailStates.hazardousColor, maxValue: 500, progressValue: 300, ribbonText: Text.Ribbons.hazardous, ribbonImage: #imageLiteral(resourceName: "ribbon-hazardous"), centerImage: #imageLiteral(resourceName: "status-hazardous-black"))
+    
+    static func getConfigForValue(pm10Value: Double, pm25Value: Double) -> GaugeConfig {
+        
+        let pm10Aqi = AQI.getAQIForTypeWithValue(value: pm10Value, aqiType: .pm10)
+        
+        let pm25Aqi = AQI.getAQIForTypeWithValue(value: pm25Value, aqiType: .pm25)
+        
+        
+        var aqiToUse: AQI
+        var valueToUse: Double
+        var maxValue: Double
+        var congif: GaugeConfig
+        
+        if pm10Aqi.rawValue > pm25Aqi.rawValue {
+            aqiToUse = pm10Aqi
+            valueToUse = pm10Value
+            maxValue = AQIType.pm10.maxValue
+        }else {
+            aqiToUse = pm25Aqi
+            valueToUse = pm25Value
+            maxValue = AQIType.pm25.maxValue
+        }
+        
+        switch aqiToUse {
+            case .great:
+                congif = great
+            case .ok:
+                congif = ok
+            case .sensitive:
+                congif = sensitive
+            case .unhealthy:
+                congif = unhealthy
+            case .veryUnhealthy:
+                congif = veryUnhealthy
+            case .hazardous:
+                congif = hazardous
+            }
+        
+        congif.maxValue = maxValue
+        congif.progressValue = valueToUse
+        
+        return congif
+    }
 }

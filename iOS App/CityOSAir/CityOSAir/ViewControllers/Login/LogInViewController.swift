@@ -70,13 +70,7 @@ class LogInViewController: UIViewController {
                     self?.stopLoading()
                     
                     if result != nil {
-                        
-                        if hasDevice {
-                            self?.navigationController?.pushViewController(DeviceInfoViewController(), animated: true)
-                        }else {
-                            self?.navigationController?.pushViewController(ConnectIntroViewController(), animated: true)
-                        }
-                        
+                        self?.toDeviceController()
                     }else {
                         self?.alert(message, message: nil, close: "Close", closeHandler: nil)
                     }
@@ -90,10 +84,28 @@ class LogInViewController: UIViewController {
         }
     }
     
+    func continueWithoutLoginPressed() {
+        toDeviceController()
+    }
+    
     func forgotPasswordPressed() {
         self.view.endEditing(true)
         self.navigationController?.pushViewController(ResetPassViewController(), animated: true)
-    }    
+    }
+    
+    fileprivate func toDeviceController() {
+        
+        let deviceVC = DeviceInfoViewController()
+        
+        deviceVC.device = Cache.sharedCache.getDeviceCollection()?.first
+        
+        let slideMenuViewController = SlideMenuController(mainViewController: deviceVC, leftMenuViewController: MenuViewController())
+        SlideMenuOptions.contentViewScale = 1
+        SlideMenuOptions.hideStatusBar = false
+        
+        present(slideMenuViewController, animated: true, completion: nil)
+
+    }
 }
 
 extension LogInViewController: UITextFieldDelegate {
@@ -138,7 +150,7 @@ extension LogInViewController: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as BigButtonSecondaryTableViewCell
             
-            cell.button.addTarget(self, action: #selector(LogInViewController.continuePressed), for: .touchUpInside)
+            cell.button.addTarget(self, action: #selector(LogInViewController.continueWithoutLoginPressed), for: .touchUpInside)
             
             return cell
         }

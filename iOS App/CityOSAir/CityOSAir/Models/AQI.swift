@@ -8,8 +8,22 @@
 
 import UIKit
 
-enum AQI {
-    case great
+enum AQIType {
+    case pm10
+    case pm25
+    
+    var maxValue: Double {
+        switch self {
+        case .pm10:
+            return 425.0
+        case .pm25:
+            return 500.4
+        }
+    }
+}
+
+enum AQI: Int {
+    case great = 1
     case ok
     case sensitive
     case unhealthy
@@ -139,6 +153,54 @@ enum AQI {
             return "Unhealthy for everyone, especially people with hearth or lung disease. Everyone should avoid physiscal outdoor activites and wear a mask."
         case .hazardous:
             return "Emergency conditions. Air is hazardous to everyone. Everyone should avoid ALL outdoor activites or wear a mask."
+        }
+    }
+    
+    static func getAQIForTypeWithValue(value: Double, aqiType: AQIType) -> AQI {
+        
+        if aqiType == .pm10 {
+        
+            switch value {
+            case 0...54:
+                return .great
+            case 55...154:
+                return .ok
+            case 155...254:
+                return .sensitive
+            case 255...354:
+                return .unhealthy
+            case 355...424:
+                return .veryUnhealthy
+            default:
+                if value > 424 {
+                    return .hazardous
+                }else {
+                    return .great
+                }
+            }
+        
+        }else {
+        
+            switch value {
+            case 0...12:
+                return .great
+            case 12.1...35.4:
+                return .ok
+            case 35.5...55.4:
+                return .sensitive
+            case 55.5...150.4:
+                return .unhealthy
+            case 150.5...250.4:
+                return .veryUnhealthy
+            case 250.5...500.4:
+                return .hazardous
+            default:
+                if value > 500.4 {
+                    return .hazardous
+                }else {
+                    return .great
+                }
+            }
         }
     }
     

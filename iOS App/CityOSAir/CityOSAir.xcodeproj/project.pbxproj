@@ -41,6 +41,7 @@
 		777CD34B1D742F040011BDC2 /* ReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */; };
 		77868B191D78868E00CD2DBA /* Readings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77868B181D78868E00CD2DBA /* Readings.swift */; };
 		778DD35A1D73416600221A5B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DD3591D73416600221A5B /* CreateAccountViewController.swift */; };
+		77988AE21E1F9913003B951C /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77988AE11E1F9913003B951C /* Device.swift */; };
 		779DBFF01D730A4500623FFE /* BigButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFEF1D730A4500623FFE /* BigButtonTableViewCell.swift */; };
 		779DBFF21D730BE200623FFE /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF11D730BE200623FFE /* InputTableViewCell.swift */; };
 		779DBFF41D730BFF00623FFE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DBFF31D730BFF00623FFE /* Enums.swift */; };
@@ -129,6 +130,7 @@
 		777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTableViewCell.swift; sourceTree = "<group>"; };
 		77868B181D78868E00CD2DBA /* Readings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readings.swift; sourceTree = "<group>"; };
 		778DD3591D73416600221A5B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateAccountViewController.swift; path = "Create Account/CreateAccountViewController.swift"; sourceTree = "<group>"; };
+		77988AE11E1F9913003B951C /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		779DBFEF1D730A4500623FFE /* BigButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButtonTableViewCell.swift; sourceTree = "<group>"; };
 		779DBFF11D730BE200623FFE /* InputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		779DBFF31D730BFF00623FFE /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				7768EF4C1DCF6CE500AC1775 /* ReadingCollection.swift */,
 				77C52B1C1E156C5D00DCF615 /* AQI.swift */,
 				77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */,
+				77988AE11E1F9913003B951C /* Device.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				779DBFF41D730BFF00623FFE /* Enums.swift in Sources */,
 				77DB9A9B1E1EE24B004DFF3C /* CircularGaugeView.swift in Sources */,
 				7713ADB71DC67F3B004EFC0B /* ESP_ByteUtil.m in Sources */,
+				77988AE21E1F9913003B951C /* Device.swift in Sources */,
 				774706081D7383E8005D4E3E /* ResetPassViewController.swift in Sources */,
 				7713ADBF1DC67F3B004EFC0B /* ESPTouchResult.m in Sources */,
 				776E62E51E089B5200A9372A /* BalloonMarker.swift in Sources */,
