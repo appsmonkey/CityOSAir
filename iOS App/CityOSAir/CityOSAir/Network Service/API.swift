@@ -17,6 +17,7 @@ open class API {
         case device
         case deviceRegister
         case readingsLatest(deviceID: Int)
+        case readingsAverage
         case sensorReadings(deviceID: Int, sensorID: Int, numberOfReadings: Int)
         case reset
         case forget(deviceID: Int)
@@ -25,7 +26,7 @@ open class API {
             switch self {
             case .login, .register, .reset, .deviceRegister:
                 return "POST"
-            case .device, .readingsLatest , .sensorReadings, .forget:
+            case .device, .readingsLatest , .sensorReadings, .forget, .readingsAverage:
                 return "GET"
             }
         }
@@ -37,7 +38,7 @@ open class API {
             case .register:
                 return "\(baseURL)user/register"
             case .device:
-                return "\(baseURL)device/my/default"
+                return "\(baseURL)device/my"
             case .deviceRegister:
                 return "\(baseURL)device"
             case .reset:
@@ -48,6 +49,8 @@ open class API {
                 return "\(baseURL)device/\(deviceID)/latest"
             case .sensorReadings(let deviceID, let sensorID, let numberOfReadings):
                 return "\(baseURL)device/\(deviceID)/sensor/\(sensorID)?count=\(numberOfReadings)"
+            case .readingsAverage:
+                return "\(baseURL)device/group/1?aggregate=avg"
             }
         }
         

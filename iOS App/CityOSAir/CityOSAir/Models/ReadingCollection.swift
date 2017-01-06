@@ -17,16 +17,25 @@ class ReadingCollection: Object {
     
     let realmReadings = List<Reading>()
     
-    convenience init(lastUpdated: Date, readings: [Reading]) {
+    convenience init(lastUpdated: Date, readings: [Reading], deviceId: Int) {
         self.init()
         
         self.lastUpdated = lastUpdated
         
         self.realmReadings.append(objectsIn: readings)
         
+        self.id = deviceId
     }
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    func getReadingValue(type: ReadingType) -> Double {
+        if let reading = realmReadings.filter({ $0.readingType == type }).first {
+            return reading.value
+        }else {
+            return 0
+        }
     }
 }

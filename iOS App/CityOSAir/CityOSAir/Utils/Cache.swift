@@ -31,16 +31,67 @@ final class Cache {
         }
     }
     
-    func getReadingCollection() -> ReadingCollection? {
+    func getReadingCollectionForDevice(deviceId: Int) -> ReadingCollection? {
         do {
             
             let realm = try Realm()
             
-            if let result = realm.objects(ReadingCollection.self).first {
+            if let result = realm.object(ofType: ReadingCollection.self, forPrimaryKey: deviceId) {
                 return result
             }
             
             return nil
+            
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    
+    func saveDevices(deviceCollection: [Device]) {
+        do {
+            
+            var deviceCollection = deviceCollection
+            
+            let defDevice = Device()
+            defDevice.identification = Text.Readings.title
+            defDevice.id = 0
+            
+            deviceCollection.append(defDevice)
+            
+            let realm = try Realm()
+            
+            try realm.write {
+                realm.add(deviceCollection, update: true)
+            }
+            
+            return
+            
+        } catch {
+            print(error)
+        }
+    }
+    
+    func getDeviceCollection() -> [Device]? {
+        do {
+            
+            let realm = try Realm()
+            
+            return realm.objects(Device.self).toArray()
+            
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func getDeviceForIdentifier(identifier: String) -> Device? {
+        do {
+            
+            let realm = try Realm()
+            
+            return realm.objects(Device.self).filter("identification = %@", identifier).first
             
         } catch {
             print(error)

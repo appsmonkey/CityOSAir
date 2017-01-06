@@ -16,7 +16,6 @@ class User: Object {
     dynamic var email: String = ""
     dynamic var password: String = ""
     dynamic var token: String = ""
-    let deviceId = RealmOptional<Int>()
 
     convenience init(json: JSON) {
         self.init()

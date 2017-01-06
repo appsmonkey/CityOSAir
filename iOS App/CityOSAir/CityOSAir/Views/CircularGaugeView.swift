@@ -31,7 +31,9 @@ public class CircularGaugeView: UIView {
     
     fileprivate func setProgress(value: Double) {
         
-        if value > maxValue { return }
+        var value = value
+        
+        if value > maxValue { value = maxValue }
         
         let angle = calculateProgressFor(value: value)
         

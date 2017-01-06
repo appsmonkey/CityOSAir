@@ -51,7 +51,7 @@ class AirService {
         }
     }
     
-    static func device(_ completion: @escaping (_ success: Bool, _ message: String, _ deviceID: Int?) -> ()) {
+    static func device(_ completion: @escaping (_ success: Bool, _ message: String, _ devices: [Device]?) -> ()) {
         
         API.dataTask(API.Endpoints.device, params: nil) { (success, json, statusCode) in
             
@@ -59,15 +59,18 @@ class AirService {
                 if success {
                     if let json = json {
                         
-                        if let id = json["id"].int {
-                            completion(true, "OK", id)
-                            return
-                        }else {
-                            completion(true, "Json parse failed", nil)
+                        var devices = [Device]()
+                        
+                        for deviceJson in json.arrayValue {
+                            let device = Device(fromJson: deviceJson)
+                            devices.append(device)
                         }
+                        
+                        completion(true, "Success", devices)
+                        
+                    }else {
+                        completion(true, "Json parse failed", nil)
                     }
-                    
-                    completion(true, "Json parse failed", nil)
                 }else {
                     completion(false, "Failed", nil)
                 }
@@ -116,11 +119,13 @@ class AirService {
     
     static func latestReadings(_ deviceID: Int, completion: @escaping (_ success: Bool, _ message: String, _ readings: ReadingCollection?) -> ()) {
         
-        API.dataTask(API.Endpoints.readingsLatest(deviceID: deviceID), params: nil) { (success, json, statusCode) in
+        let endpoint = deviceID == 0 ? API.Endpoints.readingsAverage : API.Endpoints.readingsLatest(deviceID: deviceID)
+        
+        API.dataTask(endpoint, params: nil) { (success, json, statusCode) in
             
             DispatchQueue.main.async {
                 
-                var readingCollection = Cache.sharedCache.getReadingCollection()
+                var readingCollection = Cache.sharedCache.getReadingCollectionForDevice(deviceId: deviceID)
                 
                 if success {
                     if let json = json {
@@ -134,7 +139,7 @@ class AirService {
                             }
                         }
                         
-                        readingCollection = ReadingCollection(lastUpdated: Date(), readings: readings)
+                        readingCollection = ReadingCollection(lastUpdated: Date(), readings: readings, deviceId: deviceID)
                         
                         if let readingCollection = readingCollection {
                             Cache.sharedCache.saveReadingCollection(readingCollection: readingCollection)
