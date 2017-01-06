@@ -39,10 +39,12 @@ class ExtendedReadingTableViewCell: UITableViewCell {
     
     let flagLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = Styles.DataCell.IdentifierLabel.font
-        lbl.textColor = Styles.DataCell.IdentifierLabel.tintColor
+        lbl.font = Styles.DataCell.FlagLabel.font
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
+    
+    var identifierYConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -64,19 +66,31 @@ class ExtendedReadingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(_ readingType: ReadingType, value: String) {
+    func configure(_ readingType: ReadingType, aqi: AQI, value: String) {
+        
         typeImage.image = UIImage(named: readingType.image)
         readingLabel.text = value
         notationLabel.text = readingType.unitNotation
         
-        if readingType == ReadingType.pm25 {
+        flagLabel.text = aqi.message
+        flagLabel.textColor = aqi.textColor
+        readingLabel.textColor = aqi.textColor
+        
+        
+        if readingType == ReadingType.pm25 || readingType == ReadingType.pm10 {
+            
             let attributed = NSMutableAttributedString(string: readingType.identifier, attributes: [NSFontAttributeName:Styles.DataCell.IdentifierLabel.font])
             
-            attributed.setAttributes([NSFontAttributeName:Styles.DataCell.IdentifierLabel.subscriptFont,NSBaselineOffsetAttributeName:-10], range: NSRange(location:2,length:3))
+            attributed.setAttributes([NSFontAttributeName:Styles.DataCell.IdentifierLabel.subscriptFont,NSBaselineOffsetAttributeName:-5], range: NSRange(location:2,length:readingType == .pm25 ? 3 : 2))
             
             identifierLabel.attributedText = attributed
-        }else {
+            
+            identifierYConstraint.constant = 0
+            
+        } else {
             identifierLabel.text = readingType.identifier
+            
+            identifierYConstraint.constant = 0
         }
     }
     
@@ -96,11 +110,13 @@ class ExtendedReadingTableViewCell: UITableViewCell {
         contentView.addConstraintsWithFormat("H:|-15-[v0(30)]-15-[v1]", views: typeImage, identifierLabel)
         contentView.addConstraintsWithFormat("H:[v0][v1]-15-[v2]-25-|", views: readingLabel, notationLabel, rightArrow)
         
-        contentView.addConstraint(NSLayoutConstraint(item: identifierLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: -15))
+        contentView.addConstraint(NSLayoutConstraint(item: typeImage, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: -10))
         
-        contentView.addConstraint(NSLayoutConstraint(item: typeImage, attribute: .centerY, relatedBy: .equal, toItem: identifierLabel, attribute: .centerY, multiplier: 1, constant: 0))
+        identifierYConstraint = NSLayoutConstraint(item: identifierLabel, attribute: .centerY, relatedBy: .equal, toItem: typeImage, attribute: .centerY, multiplier: 1, constant: 0)
         
-        contentView.addConstraint(NSLayoutConstraint(item: flagLabel, attribute: .centerY, relatedBy: .equal, toItem: typeImage, attribute: .centerY, multiplier: 1, constant: 15))
+        contentView.addConstraint(identifierYConstraint)
+        
+        contentView.addConstraint(NSLayoutConstraint(item: flagLabel, attribute: .top, relatedBy: .equal, toItem: identifierLabel, attribute: .bottom, multiplier: 1, constant: 0))
         
         contentView.addConstraint(NSLayoutConstraint(item: flagLabel, attribute: .leading, relatedBy: .equal, toItem: identifierLabel, attribute: .leading, multiplier: 1, constant: 0))
 

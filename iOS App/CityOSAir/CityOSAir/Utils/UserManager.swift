@@ -29,7 +29,25 @@ class UserManager {
         
         try! self.realm.write {
             self.realm.delete(users)
-            
+        }
+        
+        clearDevices()
+        clearReadings()
+    }
+    
+    func clearDevices() {
+        let devices = self.realm.objects(Device.self).filter("id != %@", 0)
+        
+        try! self.realm.write {
+            self.realm.delete(devices)
+        }
+    }
+    
+    func clearReadings() {
+        let readings = self.realm.objects(ReadingCollection.self).filter("id != %@", 0)
+        
+        try! self.realm.write {
+            self.realm.delete(readings)
         }
     }
     

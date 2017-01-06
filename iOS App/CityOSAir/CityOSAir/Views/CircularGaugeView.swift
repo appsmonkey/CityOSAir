@@ -43,12 +43,9 @@ public class CircularGaugeView: UIView {
     
     fileprivate func calculateProgressFor(value: Double) -> Double {
         
-        print(value)
         let percent = (value / maxValue) * 100
-        print(percent)
         
         let valueFromPercent = (304 / 100) * percent
-        print(valueFromPercent)
         
         return valueFromPercent
     }
@@ -121,7 +118,7 @@ public class CircularGaugeView: UIView {
         centerImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         centerImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        centerImageView.heightAnchor.constraint(equalTo: progress.heightAnchor, multiplier: 0.5, constant: 0).isActive = true
+        centerImageView.heightAnchor.constraint(equalTo: progress.heightAnchor, multiplier: 0.4, constant: 0).isActive = true
         centerImageView.widthAnchor.constraint(equalTo: centerImageView.heightAnchor).isActive = true
         
         //ribbon

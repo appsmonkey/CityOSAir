@@ -125,7 +125,7 @@ enum AQI: Int {
     var message: String {
         switch self {
         case .great:
-            return "Great!"
+            return "Great"
         case .ok:
             return "OK"
         case .sensitive:

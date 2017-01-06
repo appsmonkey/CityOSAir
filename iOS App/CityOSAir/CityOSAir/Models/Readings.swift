@@ -66,7 +66,7 @@ enum ReadingType: Int {
         case .pm25:
             return "PM2.5"//"PM₂.₅"
         case .pm10:
-            return "PM₁₀"
+            return "PM10"//"PM₁₀"
         case .noise:
             return "Noise"
         case .co:

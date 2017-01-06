@@ -134,17 +134,21 @@ struct Styles {
         struct IdentifierLabel {
             static let font = UIFont.appRegularWithSize(9.18)
             static let subscriptFont = UIFont.appRegularWithSize(9.18/2)
-            static let tintColor = UIColor.black
+            static let tintColor = UIColor.fromHex("4d4d4d")
         }
         
         struct ReadingLabel {
             static let numberFont = UIFont.appRegularWithSize(10.5)
-            static let tintColor = UIColor.lightGray//UIColor.fromHex("61fffb")
+            static let tintColor = UIColor.fromHex("b0b0b0")
         }
         
         struct NotationLabel {
             static let identifierFont = UIFont.appRegularWithSize(6.5)
-            static let tintColor = UIColor.lightGray//UIColor.fromHex("61fffb")
+            static let tintColor = UIColor.fromHex("b0b0b0")
+        }
+        
+        struct FlagLabel {
+            static let font = UIFont.appRegularWithSize(8)
         }
         
     }

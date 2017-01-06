@@ -44,11 +44,16 @@ class MenuViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setupSections()
         tableView.reloadData()
     }
     
     fileprivate func setupSections() {
-        if let devices = Cache.sharedCache.getDeviceCollection()  {
+        
+        first = [MenuCells.cityAir]
+        second = [MenuCells.aqiPM10, MenuCells.aqiPM25, MenuCells.settings]
+        
+        if let _ = UserManager.sharedInstance.getLoggedInUser(), let devices = Cache.sharedCache.getDeviceCollection()  {
             for device in devices {
                 
                 if device.identification == MenuCells.cityAir.text {
@@ -58,8 +63,7 @@ class MenuViewController: UIViewController {
                 first.append(MenuCells.cityDevice(name: device.identification))
             }
         } else {
-            second.append(MenuCells.logIn)
-            second.reverse()
+            second.insert(MenuCells.logIn, at: 0)
         }
     }
     
@@ -70,7 +74,7 @@ class MenuViewController: UIViewController {
         closeBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         closeBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
         
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: closeBtn.topAnchor).isActive = true
@@ -107,6 +111,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
+        cell.indentationWidth = 15
+        cell.indentationLevel = 1
+//        cell.selectionStyle = .none
         cell.backgroundColor = .clear
         
         if indexPath.section == 0 {
@@ -179,7 +186,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         case .settings:
             self.show(SettingsViewController(), sender: self)
         case .logIn:
-            self.navigationController?.pushViewController(LogInViewController(), animated: true)
+            let loginVC = LogInViewController()
+            loginVC.shouldClose = true
+            self.present(UINavigationController(rootViewController: loginVC) , animated: true)
         case .cityDevice(let name):
             transitionToDevice(name: name)
         case .cityAir:
@@ -200,6 +209,6 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? Styles.cellHeight(CellType.email) : 35
+        return indexPath.section == 0 ? Styles.cellHeight(CellType.email) : 45
     }
 }

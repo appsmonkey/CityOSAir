@@ -13,6 +13,8 @@ class LogInViewController: UIViewController {
     var email: String?
     var password: String?
     
+    var shouldClose = false
+    
     lazy var tableView: UITableView = {
         let table = UITableView()
         
@@ -95,16 +97,20 @@ class LogInViewController: UIViewController {
     
     fileprivate func toDeviceController() {
         
-        let deviceVC = DeviceInfoViewController()
+        if shouldClose {
+            self.dismiss(animated: true, completion: nil)
+        }else {
         
-        deviceVC.device = Cache.sharedCache.getDeviceCollection()?.first
-        
-        let slideMenuViewController = SlideMenuController(mainViewController: deviceVC, leftMenuViewController: MenuViewController())
-        SlideMenuOptions.contentViewScale = 1
-        SlideMenuOptions.hideStatusBar = false
-        
-        present(slideMenuViewController, animated: true, completion: nil)
-
+            let deviceVC = DeviceInfoViewController()
+            
+            deviceVC.device = Cache.sharedCache.getDeviceCollection()?.first
+            
+            let slideMenuViewController = SlideMenuController(mainViewController: deviceVC, leftMenuViewController: MenuViewController())
+            SlideMenuOptions.contentViewScale = 1
+            SlideMenuOptions.hideStatusBar = false
+            
+            present(slideMenuViewController, animated: true, completion: nil)
+        }
     }
 }
 

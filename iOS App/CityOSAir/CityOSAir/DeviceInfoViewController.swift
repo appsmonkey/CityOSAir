@@ -16,7 +16,6 @@ class DeviceInfoViewController: UIViewController {
                 return
             }
             
-            readingCollection = Cache.sharedCache.getReadingCollectionForDevice(deviceId: device.id)
             header.text = device.identification
             
             refreshData()
@@ -29,6 +28,7 @@ class DeviceInfoViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         table.register(ReadingTableViewCell.self)
+        table.register(ExtendedReadingTableViewCell.self)
         table.tableFooterView = UIView()
         table.alwaysBounceVertical = false
         table.backgroundColor = .clear
@@ -69,8 +69,8 @@ class DeviceInfoViewController: UIViewController {
     
     let refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
-        refresh.tintColor = UIColor.white
-        refresh.attributedTitle = NSAttributedString(string: "Updating data...", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        refresh.tintColor = UIColor.fromHex("b0b0b0")
+        refresh.attributedTitle = NSAttributedString(string: "Updating data...", attributes: [NSForegroundColorAttributeName: UIColor.fromHex("b0b0b0")])
         return refresh
     }()
     
@@ -82,6 +82,8 @@ class DeviceInfoViewController: UIViewController {
             }
             
             self.readings = Array(readingCollection.realmReadings)
+            
+            repositionPMs()
             
             tableView.reloadData()
             
@@ -120,6 +122,10 @@ class DeviceInfoViewController: UIViewController {
         setUI()
         
         menuBtn.addTarget(self, action: #selector(DeviceInfoViewController.openMenu), for: .touchUpInside)
+        
+        if let deviceId = device?.id {
+            readingCollection = Cache.sharedCache.getReadingCollectionForDevice(deviceId: deviceId)
+        }
     }
     
     fileprivate func setUI() {
@@ -199,26 +205,76 @@ extension DeviceInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ReadingTableViewCell
         
         let reading = readings[(indexPath as NSIndexPath).row]
         
-        cell.configure(reading.readingType!, value: "\(reading.value.roundTo(places: 1))")
-        
-        return cell
+        if reading.readingType == .pm25 || reading.readingType == .pm10 {
+            
+            let aqiType = reading.readingType == .pm25 ? AQIType.pm25 : AQIType.pm10
+            
+            let aqi = AQI.getAQIForTypeWithValue(value: reading.value.roundTo(places: 1), aqiType: aqiType)
+            
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ExtendedReadingTableViewCell
+            
+            cell.configure(reading.readingType!, aqi: aqi ,value: "\(reading.value.roundTo(places: 1))")
+
+            return cell
+        }else {
+            
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ReadingTableViewCell
+            
+            cell.configure(reading.readingType!, value: "\(reading.value.roundTo(places: 1))")
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let graphVC = GraphViewController()
-        
-        graphVC.reading = readings[(indexPath as NSIndexPath).row]
-        
-        present(graphVC, animated: true, completion: nil)
+//        let graphVC = GraphViewController()
+//        
+//        graphVC.reading = readings[(indexPath as NSIndexPath).row]
+//        
+//        present(graphVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 35 * UIDevice.delta//70
+        
+        switch indexPath.row {
+        case 0, 1:
+            return 40 * UIDevice.delta
+        default:
+            return 35 * UIDevice.delta
+        }
+    }
+}
+
+
+extension DeviceInfoViewController {
+    
+    fileprivate func repositionPMs() {
+        
+        guard let pm25 = readings.filter({ $0.readingType == ReadingType.pm25 }).first, let pm25Index = readings.index(of: pm25) else {
+            return
+        }
+        
+        let newList = rearrange(array: readings, fromIndex: pm25Index, toIndex: 0)
+        
+        guard let pm10 = newList.filter({ $0.readingType == ReadingType.pm10 }).first, let pm10Index = readings.index(of: pm10) else {
+            return
+        }
+        
+        self.readings = rearrange(array: newList, fromIndex: pm10Index, toIndex: 1)
+        
+    }
+    
+    fileprivate func rearrange<T>(array: Array<T>, fromIndex: Int, toIndex: Int) -> Array<T>{
+        var arr = array
+        let element = arr.remove(at: fromIndex)
+        arr.insert(element, at: toIndex)
+        
+        return arr
     }
 }

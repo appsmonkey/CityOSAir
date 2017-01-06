@@ -126,7 +126,7 @@ struct Text {
     struct Settings {
         static let title = "Settings"
         static let logout = "Logout"
-        static let login = "Login"
+        static let login = "Log into device"
         static let notificationsTitle = "Notifications"
         static let notificationsDetail = "Recieve bad air alerts"
         static let notificationsOn = "On"

@@ -92,8 +92,8 @@ class AQIViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(lineView)
         
-        view.addConstraintsWithFormat("V:|-30-[v0]", views: backBtn)
-        view.addConstraintsWithFormat("H:|-15-[v0]", views: backBtn)
+        view.addConstraintsWithFormat("V:|-30-[v0(30)]", views: backBtn)
+        view.addConstraintsWithFormat("H:|-15-[v0(30)]", views: backBtn)
         
         view.addConstraintsWithFormat("V:[v0]-10-[v1]-8-[v2(0.5)][v3]|", views: header, subtitle, lineView, tableView)
         

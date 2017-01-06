@@ -49,6 +49,11 @@ class SettingsViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 1))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     fileprivate func setUI() {
         
         view.addSubview(header)
@@ -60,8 +65,8 @@ class SettingsViewController: UIViewController {
         
         view.addSubview(lineView)
         
-        view.addConstraintsWithFormat("V:|-30-[v0]", views: backBtn)
-        view.addConstraintsWithFormat("H:|-15-[v0]", views: backBtn)
+        view.addConstraintsWithFormat("V:|-30-[v0(30)]", views: backBtn)
+        view.addConstraintsWithFormat("H:|-15-[v0(30)]", views: backBtn)
         
         view.addConstraintsWithFormat("V:[v0]-[v1(0.5)][v2]|", views: header, lineView, tableView)
         
@@ -79,9 +84,24 @@ class SettingsViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    fileprivate func handleLogout() {
-        UserManager.sharedInstance.logoutUser()
-        _ = self.navigationController?.popToRootViewController(animated: true)
+    fileprivate func handleLoginLogout() {
+        
+        if let _ = UserManager.sharedInstance.getLoggedInUser() {
+        
+            UserManager.sharedInstance.logoutUser()
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.window?.rootViewController = UINavigationController(rootViewController: LogInViewController())
+            
+        }else {
+            
+            let loginVC = LogInViewController()
+            
+            loginVC.shouldClose = true
+            
+            self.present(UINavigationController(rootViewController: loginVC) , animated: true)
+        }
     }
 }
 
@@ -123,7 +143,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = Text.Settings.notificationsTitle
             cell.detailTextLabel?.text = Text.Settings.notificationsDetail
         case 1:
-            cell.textLabel?.text = Text.MyDevice.logout
+            if let _ = UserManager.sharedInstance.getLoggedInUser() {
+                cell.textLabel?.text = Text.Settings.logout
+            }else {
+                cell.textLabel?.text = Text.Settings.login
+            }
         default:
             cell.textLabel?.text = ""
         }
@@ -137,9 +161,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             
         case 0:
 //            handleWifi()
-            print("")
+            print("Notif Clicked")
         case 1:
-            handleLogout()
+            handleLoginLogout()
         default:
             break
         }
