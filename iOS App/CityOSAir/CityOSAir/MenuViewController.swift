@@ -73,6 +73,8 @@ class MenuViewController: UIViewController {
         
         closeBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         closeBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
+        closeBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        closeBtn.widthAnchor.constraint(equalTo: closeBtn.heightAnchor).isActive = true
         
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

@@ -6,6 +6,7 @@ target 'CityOSAir' do
     pod 'RealmSwift'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'Firebase/Messaging'
 end
 
 post_install do |installer|

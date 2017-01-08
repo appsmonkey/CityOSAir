@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>302470442158-6kdr2eli17i2ke4igu7ks7gom95qn9cj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.302470442158-6kdr2eli17i2ke4igu7ks7gom95qn9cj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCEcb2Zf7P2r_RoQHiZLr-Z63SeATeh88k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>302470442158</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.cityos.cityos-air</string>
+	<key>PROJECT_ID</key>
+	<string>cityosair-44a77</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cityosair-44a77.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:302470442158:ios:a99847d100efd84b</string>
+	<key>DATABASE_URL</key>
+	<string>https://cityosair-44a77.firebaseio.com</string>
+</dict>
+</plist>

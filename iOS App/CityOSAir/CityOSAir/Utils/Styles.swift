@@ -153,6 +153,15 @@ struct Styles {
         
     }
     
+    struct SettingsCell {
+        static let titleFont = UIFont.appRegularWithSize(10)
+        static let titleColor = UIColor.fromHex("525252")
+        static let subtitleFont = UIFont.appRegularWithSize(7)
+        static let subtitleColor = UIColor.fromHex("a6a6a6")
+        static let rightDetailFont = UIFont.appRegularWithSize(10)
+        static let rightDetailColor = UIColor.fromHex("43c5db")
+    }
+    
     struct Loading {
         static let font = UIFont.appRegularWithSize(12.5)
         static let tintColor = UIColor.fromHex("caebed")

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class SettingsViewController: UIViewController {
 
@@ -29,14 +30,26 @@ class SettingsViewController: UIViewController {
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        table.register(SettingsTableViewCell.self)
         table.dataSource = self
         table.delegate = self
         table.tableFooterView = UIView()
         table.separatorColor = UIColor.lightGray.withAlphaComponent(0.7)
         table.alwaysBounceVertical = false
-        
+        table.rowHeight = UITableViewAutomaticDimension
+        table.estimatedRowHeight = 200
         return table
     }()
+    
+    var isPushEnabled = false {
+        didSet {
+            //doing on main because of
+            //willEnterForeground case
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +60,17 @@ class SettingsViewController: UIViewController {
         
         //used to hide last cell
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 1))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.isPushAuthorized), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        isPushAuthorized()
     }
     
     fileprivate func setUI() {
@@ -103,54 +122,70 @@ class SettingsViewController: UIViewController {
             self.present(UINavigationController(rootViewController: loginVC) , animated: true)
         }
     }
+    
+    func isPushAuthorized() {
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            
+            center.getNotificationSettings { (settings) in
+                if(settings.authorizationStatus == .authorized)
+                {
+                    self.isPushEnabled = true
+                }
+                else
+                {
+                    self.isPushEnabled = false
+                }
+            }
+            
+        } else {
+            isPushEnabled = UIApplication.shared.isRegisteredForRemoteNotifications
+        }
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-//        cell.addBorder()
-        
-        cell.textLabel?.font = Styles.SmallButton.font
+        var cell:UITableViewCell!
         
         switch (indexPath as NSIndexPath).row {
         
         case 0:
-            cell.textLabel?.textColor = Styles.FormCell.inputColor
-            cell.accessoryType = .none
+            cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SettingsTableViewCell
+            (cell as! SettingsTableViewCell).configure(rightDetailText: isPushEnabled ? "On" : "Off")
+            (cell as! SettingsTableViewCell).titleLabel.text = Text.Settings.notificationsTitle
+            (cell as! SettingsTableViewCell).subtitleLabel.text = Text.Settings.notificationsDetail
             return cell
         case 1:
+            cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SettingsTableViewCell
+            (cell as! SettingsTableViewCell).configure()
+            (cell as! SettingsTableViewCell).titleLabel.text = Text.Settings.notifyMe
+            (cell as! SettingsTableViewCell).subtitleLabel.text = "Good, Moderate, Unhealthy for sensitive, Unhealthy, Very unhelathy, Hazardous"
+        case 2:
+            cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+
             cell.textLabel?.textColor = Styles.SmallButton.tintColor
             cell.accessoryType = .none
-        default:
-            break
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        switch (indexPath as NSIndexPath).row {
-        
-        case 0:
-            cell.textLabel?.text = Text.Settings.notificationsTitle
-            cell.detailTextLabel?.text = Text.Settings.notificationsDetail
-        case 1:
+            
             if let _ = UserManager.sharedInstance.getLoggedInUser() {
                 cell.textLabel?.text = Text.Settings.logout
             }else {
                 cell.textLabel?.text = Text.Settings.login
             }
         default:
-            cell.textLabel?.text = ""
+            break
         }
+        
+        cell.textLabel?.font = Styles.SmallButton.font
+
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -160,16 +195,14 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         switch (indexPath as NSIndexPath).row {
             
         case 0:
-//            handleWifi()
-            print("Notif Clicked")
+            UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
         case 1:
+            print("Notif")
+        case 2:
             handleLoginLogout()
         default:
             break
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Styles.cellHeight(CellType.email)
-    }
+
 }

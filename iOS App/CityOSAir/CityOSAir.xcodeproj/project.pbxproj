@@ -65,6 +65,8 @@
 		77DB9A991E1EE1EF004DFF3C /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */; };
 		77DB9A9B1E1EE24B004DFF3C /* CircularGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */; };
 		77DB9A9D1E1EF724004DFF3C /* GaugeStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */; };
+		77ED20D81E2245E000F09B5D /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */; };
+		77ED20DA1E224A4C00F09B5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */; };
 		EE742475B96CE2C48080D1FE /* Pods_CityOSAir.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6765CBADE61F6BF7BC92644D /* Pods_CityOSAir.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +160,9 @@
 		77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
 		77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularGaugeView.swift; sourceTree = "<group>"; };
 		77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeStates.swift; sourceTree = "<group>"; };
+		77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		77ED20DB1E2263D100F09B5D /* CityOSAir.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CityOSAir.entitlements; sourceTree = "<group>"; };
 		93995C77BDE858D5588A8707 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52E511389137F4B29518F7F /* Pods-CityOSAir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityOSAir.release.xcconfig"; path = "Pods/Target Support Files/Pods-CityOSAir/Pods-CityOSAir.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -303,6 +308,7 @@
 				779F11421E12739500213ACC /* BigButtonSecondaryTableViewCell.swift */,
 				77B5D0DD1E13E17600D5DF55 /* ExtendedReadingTableViewCell.swift */,
 				7721A4FE1E154D5A006FB450 /* AQITableViewCell.swift */,
+				77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 		77D0D5E31D6F822E00D7199C /* CityOSAir */ = {
 			isa = PBXGroup;
 			children = (
+				77ED20DB1E2263D100F09B5D /* CityOSAir.entitlements */,
 				778F191F1D746AC4006290F6 /* ESPTouch */,
 				77D2E2EB1D72EC9E00D012BC /* Protocols */,
 				77206B9B1D783CF300D77312 /* Network Service */,
@@ -362,6 +369,7 @@
 				77D0D5EB1D6F822F00D7199C /* Assets.xcassets */,
 				77D0D5ED1D6F822F00D7199C /* LaunchScreen.storyboard */,
 				77D0D5F01D6F822F00D7199C /* Info.plist */,
+				77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */,
 			);
 			path = CityOSAir;
 			sourceTree = "<group>";
@@ -484,6 +492,11 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 648PE3P6D2;
 						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					77D0D5F41D6F822F00D7199C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -518,6 +531,7 @@
 			files = (
 				77D0D5EF1D6F822F00D7199C /* LaunchScreen.storyboard in Resources */,
 				77D0D5EC1D6F822F00D7199C /* Assets.xcassets in Resources */,
+				77ED20DA1E224A4C00F09B5D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +628,7 @@
 				77206B9A1D7824B700D77312 /* AirService.swift in Sources */,
 				77DB9A991E1EE1EF004DFF3C /* KDCircularProgress.swift in Sources */,
 				774706041D738191005D4E3E /* SmallButtonTableViewCell.swift in Sources */,
+				77ED20D81E2245E000F09B5D /* SettingsTableViewCell.swift in Sources */,
 				77065DF11D74460B00960AA5 /* SettingsViewController.swift in Sources */,
 				77D0D5E51D6F822F00D7199C /* AppDelegate.swift in Sources */,
 				778DD35A1D73416600221A5B /* CreateAccountViewController.swift in Sources */,
@@ -781,6 +796,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CityOSAir/CityOSAir.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CityOSAir/Info.plist;
@@ -802,6 +818,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CityOSAir/CityOSAir.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CityOSAir/Info.plist;
