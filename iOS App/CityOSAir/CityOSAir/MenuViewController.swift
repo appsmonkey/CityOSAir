@@ -61,6 +61,7 @@ class MenuViewController: UIViewController {
                 }
                 
                 first.append(MenuCells.cityDevice(name: device.identification))
+                first.reverse()
             }
         } else {
             second.insert(MenuCells.logIn, at: 0)
@@ -186,7 +187,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             aqiVC.aqiType = .pm25
             self.show(aqiVC, sender: self)
         case .settings:
-            self.show(SettingsViewController(), sender: self)
+            let settingsVC = UINavigationController(rootViewController: SettingsViewController())
+            settingsVC.isNavigationBarHidden = true
+            self.show(settingsVC, sender: self)
         case .logIn:
             let loginVC = LogInViewController()
             loginVC.shouldClose = true

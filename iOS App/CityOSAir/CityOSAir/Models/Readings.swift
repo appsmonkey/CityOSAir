@@ -56,7 +56,7 @@ enum ReadingType: Int {
         case .humidity:
             return "Humidity"
         case .altitude:
-            return "Altitude"
+            return "Feels like"//"Altitude"
         case .uv:
             return "UV Light"
         case .light:
@@ -85,7 +85,7 @@ enum ReadingType: Int {
         case .humidity, .co, .no2:
             return "%"
         case .altitude:
-            return "m"
+            return "C"//"m"
         case .uv:
             return "mW/cm³"
         case .light:

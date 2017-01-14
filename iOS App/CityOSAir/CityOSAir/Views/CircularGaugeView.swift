@@ -55,7 +55,7 @@ public class CircularGaugeView: UIView {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = .white
         lbl.textAlignment = .center
-        lbl.font = UIFont.systemFont(ofSize: 13.4)
+        lbl.font = UIFont.appRegularWithSize(7.3)
         return lbl
     }()
     
@@ -124,9 +124,9 @@ public class CircularGaugeView: UIView {
         //ribbon
         progress.addSubview(ribbonImageView)
         
-        ribbonImageView.bottomAnchor.constraint(equalTo: progress.bottomAnchor, constant: -4).isActive = true
-        ribbonImageView.leadingAnchor.constraint(equalTo: progress.leadingAnchor, constant: 2).isActive = true
-        ribbonImageView.trailingAnchor.constraint(equalTo: progress.trailingAnchor, constant: -1).isActive = true
+        ribbonImageView.bottomAnchor.constraint(equalTo: progress.bottomAnchor, constant: -5).isActive = true
+        ribbonImageView.leadingAnchor.constraint(equalTo: progress.leadingAnchor, constant: 4).isActive = true
+        ribbonImageView.trailingAnchor.constraint(equalTo: progress.trailingAnchor, constant: -3).isActive = true
         
         ribbonImageView.addSubview(msgLabel)
         
@@ -148,6 +148,13 @@ public class CircularGaugeView: UIView {
         self.ribbonText = config.ribbonText
         self.ribbonImage = config.ribbonImage
         self.centerImage = config.centerImage
+    }
+    
+    func refreshToInitial() {
+        self.value = 0
+        self.ribbonText = ""
+        self.ribbonImage = nil
+        self.centerImage = nil
     }
     
 }

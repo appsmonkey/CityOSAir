@@ -38,14 +38,12 @@ class LogInViewController: UIViewController {
         
         hideKeyboardWhenTappedAround()
         
-        self.title = Text.LogIn.title
-        
         setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.title = Text.LogIn.title
         self.navigationController?.isNavigationBarHidden = false
         
     }
@@ -92,6 +90,7 @@ class LogInViewController: UIViewController {
     
     func forgotPasswordPressed() {
         self.view.endEditing(true)
+        self.title = ""
         self.navigationController?.pushViewController(ResetPassViewController(), animated: true)
     }
     

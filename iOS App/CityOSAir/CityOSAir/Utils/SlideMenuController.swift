@@ -16,6 +16,8 @@ import UIKit
     @objc optional func rightDidOpen()
     @objc optional func rightWillClose()
     @objc optional func rightDidClose()
+    @objc optional func startedPan()
+    @objc optional func endedPan()
 }
 
 public struct SlideMenuOptions {
@@ -369,6 +371,9 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
                 return
             }
             
+            //my
+            self.delegate?.startedPan?()
+            
             if isLeftHidden() {
                 self.delegate?.leftWillOpen?()
             } else {
@@ -393,6 +398,11 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
             applyLeftOpacity()
             applyLeftContentViewScale()
         case UIGestureRecognizerState.ended, UIGestureRecognizerState.cancelled:
+            
+            //my
+            self.delegate?.endedPan?()
+
+            
             if LeftPanState.lastState != .changed {
                 setCloseWindowLevel()
                 return
@@ -449,6 +459,9 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
                 return
             }
             
+            //my
+            self.delegate?.startedPan?()
+            
             if isRightHidden() {
                 self.delegate?.rightWillOpen?()
             } else {
@@ -475,6 +488,10 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
             applyRightContentViewScale()
             
         case UIGestureRecognizerState.ended, UIGestureRecognizerState.cancelled:
+            
+            //my
+            self.delegate?.endedPan?()
+            
             if RightPanState.lastState != .changed {
                 setCloseWindowLevel()
                 return

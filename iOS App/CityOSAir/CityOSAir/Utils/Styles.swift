@@ -132,13 +132,13 @@ struct Styles {
     struct DataCell {
         
         struct IdentifierLabel {
-            static let font = UIFont.appRegularWithSize(9.18)
-            static let subscriptFont = UIFont.appRegularWithSize(9.18/2)
+            static let font = UIFont.appRegularWithSize(10)
+            static let subscriptFont = UIFont.appRegularWithSize(10/2)
             static let tintColor = UIColor.fromHex("4d4d4d")
         }
         
         struct ReadingLabel {
-            static let numberFont = UIFont.appRegularWithSize(10.5)
+            static let numberFont = UIFont.appRegularWithSize(11.7)
             static let tintColor = UIColor.fromHex("b0b0b0")
         }
         

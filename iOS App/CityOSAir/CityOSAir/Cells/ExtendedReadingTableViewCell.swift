@@ -99,6 +99,7 @@ class ExtendedReadingTableViewCell: UITableViewCell {
         backgroundColor = .clear
         
         let rightArrow = UIImageView(image: UIImage(named: "map-detail-arrow"))
+        rightArrow.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(rightArrow)
         contentView.addSubview(typeImage)
@@ -126,8 +127,16 @@ class ExtendedReadingTableViewCell: UITableViewCell {
         
         contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
         
-        //contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .top, relatedBy: .equal, toItem: notationLabel, attribute: .top, multiplier: 1, constant: 0))
-        //contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .bottom, relatedBy: .equal, toItem: notationLabel, attribute: .bottom, multiplier: 1, constant: 0))
+        rightArrow.contentMode = .scaleAspectFit
+        
+        rightArrow.heightAnchor.constraint(equalToConstant: 18).isActive = true
+        rightArrow.widthAnchor.constraint(equalToConstant: 18).isActive = true
+        
+//        rightArrow.topAnchor.constraint(equalTo: notationLabel.topAnchor, constant: 0).isActive = true
+//        rightArrow.bottomAnchor.constraint(equalTo: notationLabel.bottomAnchor, constant: 0).isActive = true
+        
+//        contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .top, relatedBy: .equal, toItem: notationLabel, attribute: .top, multiplier: 1, constant: 0))
+//        contentView.addConstraint(NSLayoutConstraint(item: rightArrow, attribute: .bottom, relatedBy: .equal, toItem: notationLabel, attribute: .bottom, multiplier: 1, constant: 0))
 
     }
 }

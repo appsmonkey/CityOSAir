@@ -18,6 +18,12 @@ class DeviceInfoViewController: UIViewController {
             
             header.text = device.identification
             
+            if let oldDevice = oldValue {
+                if device.id == oldDevice.id {
+                    return
+                }
+            }
+            
             refreshData()
         }
     }
@@ -32,9 +38,16 @@ class DeviceInfoViewController: UIViewController {
         table.tableFooterView = UIView()
         table.alwaysBounceVertical = false
         table.backgroundColor = .clear
-        table.separatorColor = UIColor.black.withAlphaComponent(0.4)
+        table.separatorColor = UIColor.fromHex("EFEFEF")
         
         return table
+    }()
+    
+    let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.7)
+        view.isHidden = true
+        return view
     }()
     
     let menuBtn: UIButton = {
@@ -56,7 +69,6 @@ class DeviceInfoViewController: UIViewController {
         let lbl = UILabel()
         lbl.font = Styles.Detail.HeaderText.font
         lbl.textColor = Styles.Detail.HeaderText.tintColor
-//        lbl.text = Text.Readings.title
         return lbl
     }()
     
@@ -96,13 +108,22 @@ class DeviceInfoViewController: UIViewController {
             
             let config = GaugeStates.getConfigForValue(pm10Value: readingCollection.getReadingValue(type: .pm10), pm25Value: readingCollection.getReadingValue(type: .pm25))
             
-            circularGaugeView.isHidden = false
+            stopAnimatingLoading()
+
             circularGaugeView.configureWith(config: config)
         }
     }
     
+    let loadingGif = UIImage.gif(name: "CityOS_Air_Loading")
+    
+    var loadingImageView: UIImageView = {
+        let imgV = UIImageView()
+        imgV.translatesAutoresizingMaskIntoConstraints = false
+        return imgV
+    }()
+    
     var circularGaugeView: CircularGaugeView = {
-        let cgV = CircularGaugeView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        let cgV = CircularGaugeView(frame: CGRect(x: 0, y: 0, width: 224, height: 224))
         cgV.translatesAutoresizingMaskIntoConstraints = false
         cgV.isHidden = true
         return cgV
@@ -113,6 +134,8 @@ class DeviceInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.slideMenuController()?.delegate = self
+        
         view.backgroundColor = .white
         
         refreshControl.addTarget(self, action: #selector(DeviceInfoViewController.refresh(_:)), for: .valueChanged)
@@ -122,10 +145,6 @@ class DeviceInfoViewController: UIViewController {
         setUI()
         
         menuBtn.addTarget(self, action: #selector(DeviceInfoViewController.openMenu), for: .touchUpInside)
-        
-        if let deviceId = device?.id {
-            readingCollection = Cache.sharedCache.getReadingCollectionForDevice(deviceId: deviceId)
-        }
     }
     
     fileprivate func setUI() {
@@ -134,24 +153,31 @@ class DeviceInfoViewController: UIViewController {
         view.addSubview(header)
         view.addSubview(timeStamp)
         view.addSubview(circularGaugeView)
+        view.addSubview(loadingImageView)
+        view.addSubview(lineView)
         view.addSubview(tableView)
         
-        view.addConstraintsWithFormat("V:|-30-[v0]", views: menuBtn)
-        view.addConstraintsWithFormat("H:|-15-[v0]", views: menuBtn)
+        view.addConstraintsWithFormat("V:|-40-[v0(30)]", views: menuBtn)
+        view.addConstraintsWithFormat("H:|-15-[v0(30)]", views: menuBtn)
         
-        view.addConstraintsWithFormat("V:|-30-[v0]", views: mapBtn)
-        view.addConstraintsWithFormat("H:[v0]-15-|", views: mapBtn)
+        view.addConstraintsWithFormat("V:|-40-[v0(30)]", views: mapBtn)
+        view.addConstraintsWithFormat("H:[v0(30)]-15-|", views: mapBtn)
         
-        view.addConstraintsWithFormat("V:[v0]-[v1]-20-[v2]-10-[v3]|", views: header, timeStamp, circularGaugeView, tableView)
+        view.addConstraintsWithFormat("V:[v0]-[v1]-20-[v2]-10-[v3(0.5)][v4]|", views: header, timeStamp, circularGaugeView, lineView, tableView)
         
+        view.addConstraintsWithFormat("H:|[v0]|", views: lineView)
         view.addConstraintsWithFormat("H:|[v0]|", views: tableView)
         
-        view.addConstraintsWithFormat("H:[v0(200)]", views: circularGaugeView)
-        view.addConstraintsWithFormat("V:[v0(200)]", views: circularGaugeView)
+        view.addConstraintsWithFormat("H:[v0(224)]", views: circularGaugeView)
+        view.addConstraintsWithFormat("V:[v0(224)]", views: circularGaugeView)
 
+        view.addConstraintsWithFormat("H:[v0(224)]", views: loadingImageView)
+        view.addConstraintsWithFormat("V:[v0(224)]", views: loadingImageView)
         
         view.addConstraint(NSLayoutConstraint(item: circularGaugeView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0))
-
+        
+        loadingImageView.centerXAnchor.constraint(equalTo: circularGaugeView.centerXAnchor).isActive = true
+        loadingImageView.centerYAnchor.constraint(equalTo: circularGaugeView.centerYAnchor).isActive = true
         
         view.addConstraint(NSLayoutConstraint(item: header, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0))
         
@@ -164,10 +190,19 @@ class DeviceInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        
         refreshData()
     }
     
     func refreshData() {
+        
+        readings = []
+        tableView.reloadData()
+        
+        startAnimatingLoading()
+        
+        circularGaugeView.refreshToInitial()
+        
         if let deviceID = device?.id {
             AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
                 if let readingCollection = readingCollection {
@@ -180,6 +215,10 @@ class DeviceInfoViewController: UIViewController {
     func refresh(_ sender: UIRefreshControl) {
         sender.isEnabled = false
 
+        circularGaugeView.isHidden = true
+        loadingImageView.isHidden = false
+        loadingImageView.startAnimating()
+        
         if let deviceID = device?.id {
             AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
                 
@@ -217,13 +256,19 @@ extension DeviceInfoViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ExtendedReadingTableViewCell
             
             cell.configure(reading.readingType!, aqi: aqi ,value: "\(reading.value.roundTo(places: 1))")
-
+            
+            //remove later
+            cell.selectionStyle = .none
+            
             return cell
         }else {
             
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ReadingTableViewCell
             
             cell.configure(reading.readingType!, value: "\(reading.value.roundTo(places: 1))")
+           
+            //remove later
+            cell.selectionStyle = .none
             
             return cell
         }
@@ -244,15 +289,47 @@ extension DeviceInfoViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0, 1:
-            return 40 * UIDevice.delta
+            return 45 * UIDevice.delta
         default:
-            return 35 * UIDevice.delta
+            return 40 * UIDevice.delta
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if (scrollView.contentOffset.y == 0 || scrollView.contentOffset.y < 0) {
+            lineView.isHidden = true
+        }else {
+            lineView.isHidden = false
         }
     }
 }
 
+extension DeviceInfoViewController: SlideMenuControllerDelegate {
+    func startedPan() {
+        self.tableView.isScrollEnabled = false
+    }
+    
+    func endedPan() {
+        self.tableView.isScrollEnabled = true
+    }
+}
 
 extension DeviceInfoViewController {
+    
+    fileprivate func startAnimatingLoading() {
+        loadingImageView.image = loadingGif
+        circularGaugeView.isHidden = true
+        loadingImageView.isHidden = false
+        loadingImageView.startAnimating()
+    }
+    
+    fileprivate func stopAnimatingLoading() {
+        loadingImageView.stopAnimating()
+        loadingImageView.image = nil
+        loadingImageView.isHidden = true
+        circularGaugeView.isHidden = false
+    }
     
     fileprivate func repositionPMs() {
         

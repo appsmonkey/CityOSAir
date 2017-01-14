@@ -37,6 +37,8 @@
 		7768EF4B1DCF5F8800AC1775 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7768EF4A1DCF5F8800AC1775 /* Cache.swift */; };
 		7768EF4D1DCF6CE500AC1775 /* ReadingCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7768EF4C1DCF6CE500AC1775 /* ReadingCollection.swift */; };
 		776E62E51E089B5200A9372A /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E62E41E089B5200A9372A /* BalloonMarker.swift */; };
+		777243411E29A4A40011D918 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777243401E29A4A40011D918 /* UIImage+Gif.swift */; };
+		777243431E29A5BF0011D918 /* CityOS_Air_Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 777243421E29A5BF0011D918 /* CityOS_Air_Loading.gif */; };
 		777CD3491D742EE90011BDC2 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD3481D742EE90011BDC2 /* DeviceViewController.swift */; };
 		777CD34B1D742F040011BDC2 /* ReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */; };
 		77868B191D78868E00CD2DBA /* Readings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77868B181D78868E00CD2DBA /* Readings.swift */; };
@@ -67,6 +69,8 @@
 		77DB9A9D1E1EF724004DFF3C /* GaugeStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */; };
 		77ED20D81E2245E000F09B5D /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */; };
 		77ED20DA1E224A4C00F09B5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */; };
+		77ED20FC1E229C8A00F09B5D /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED20FB1E229C8A00F09B5D /* SwitchTableViewCell.swift */; };
+		77ED20FE1E229EB900F09B5D /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED20FD1E229EB900F09B5D /* AlertsViewController.swift */; };
 		EE742475B96CE2C48080D1FE /* Pods_CityOSAir.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6765CBADE61F6BF7BC92644D /* Pods_CityOSAir.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +132,8 @@
 		7768EF4A1DCF5F8800AC1775 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		7768EF4C1DCF6CE500AC1775 /* ReadingCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingCollection.swift; sourceTree = "<group>"; };
 		776E62E41E089B5200A9372A /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		777243401E29A4A40011D918 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		777243421E29A5BF0011D918 /* CityOS_Air_Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CityOS_Air_Loading.gif; sourceTree = "<group>"; };
 		777CD3481D742EE90011BDC2 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTableViewCell.swift; sourceTree = "<group>"; };
 		77868B181D78868E00CD2DBA /* Readings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readings.swift; sourceTree = "<group>"; };
@@ -163,6 +169,8 @@
 		77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77ED20DB1E2263D100F09B5D /* CityOSAir.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CityOSAir.entitlements; sourceTree = "<group>"; };
+		77ED20FB1E229C8A00F09B5D /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		77ED20FD1E229EB900F09B5D /* AlertsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
 		93995C77BDE858D5588A8707 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52E511389137F4B29518F7F /* Pods-CityOSAir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityOSAir.release.xcconfig"; path = "Pods/Target Support Files/Pods-CityOSAir/Pods-CityOSAir.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				77065DF01D74460B00960AA5 /* SettingsViewController.swift */,
+				77ED20FD1E229EB900F09B5D /* AlertsViewController.swift */,
 			);
 			path = "Device Settings";
 			sourceTree = "<group>";
@@ -309,6 +318,7 @@
 				77B5D0DD1E13E17600D5DF55 /* ExtendedReadingTableViewCell.swift */,
 				7721A4FE1E154D5A006FB450 /* AQITableViewCell.swift */,
 				77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */,
+				77ED20FB1E229C8A00F09B5D /* SwitchTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -355,7 +365,6 @@
 		77D0D5E31D6F822E00D7199C /* CityOSAir */ = {
 			isa = PBXGroup;
 			children = (
-				77ED20DB1E2263D100F09B5D /* CityOSAir.entitlements */,
 				778F191F1D746AC4006290F6 /* ESPTouch */,
 				77D2E2EB1D72EC9E00D012BC /* Protocols */,
 				77206B9B1D783CF300D77312 /* Network Service */,
@@ -368,8 +377,10 @@
 				77D0D5E41D6F822F00D7199C /* AppDelegate.swift */,
 				77D0D5EB1D6F822F00D7199C /* Assets.xcassets */,
 				77D0D5ED1D6F822F00D7199C /* LaunchScreen.storyboard */,
+				777243421E29A5BF0011D918 /* CityOS_Air_Loading.gif */,
 				77D0D5F01D6F822F00D7199C /* Info.plist */,
 				77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */,
+				77ED20DB1E2263D100F09B5D /* CityOSAir.entitlements */,
 			);
 			path = CityOSAir;
 			sourceTree = "<group>";
@@ -406,6 +417,7 @@
 				77206B971D78225700D77312 /* UserManager.swift */,
 				7768EF4A1DCF5F8800AC1775 /* Cache.swift */,
 				779F11471E12812400213ACC /* SlideMenuController.swift */,
+				777243401E29A4A40011D918 /* UIImage+Gif.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -530,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77D0D5EF1D6F822F00D7199C /* LaunchScreen.storyboard in Resources */,
+				777243431E29A5BF0011D918 /* CityOS_Air_Loading.gif in Resources */,
 				77D0D5EC1D6F822F00D7199C /* Assets.xcassets in Resources */,
 				77ED20DA1E224A4C00F09B5D /* GoogleService-Info.plist in Resources */,
 			);
@@ -615,11 +628,14 @@
 				77065DF31D744A3600960AA5 /* GraphViewController.swift in Sources */,
 				77206B981D78225700D77312 /* UserManager.swift in Sources */,
 				77C1AED41E12978400B2C384 /* MenuViewController.swift in Sources */,
+				77ED20FC1E229C8A00F09B5D /* SwitchTableViewCell.swift in Sources */,
+				777243411E29A4A40011D918 /* UIImage+Gif.swift in Sources */,
 				779F11481E12812400213ACC /* SlideMenuController.swift in Sources */,
 				777CD3491D742EE90011BDC2 /* DeviceViewController.swift in Sources */,
 				7713ADC21DC67F3B004EFC0B /* ESPUDPSocketClient.m in Sources */,
 				77868B191D78868E00CD2DBA /* Readings.swift in Sources */,
 				7713ADBB1DC67F3B004EFC0B /* ESPDataCode.m in Sources */,
+				77ED20FE1E229EB900F09B5D /* AlertsViewController.swift in Sources */,
 				7713ADC01DC67F3B004EFC0B /* ESPTouchTask.m in Sources */,
 				7721A4FF1E154D5A006FB450 /* AQITableViewCell.swift in Sources */,
 				77D2E2EA1D72EBE000D012BC /* Extensions.swift in Sources */,

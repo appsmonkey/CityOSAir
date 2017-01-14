@@ -101,7 +101,7 @@ enum AQI: Int {
         case .veryUnhealthy:
             return "150.5-250.4"
         case .hazardous:
-            return "250.5-500.4"
+            return "250.5+"
         }
     }
     
@@ -144,15 +144,15 @@ enum AQI: Int {
         case .great:
             return "Blue skies! Everyone can enjoy outdoors without risk!"
         case .ok:
-            return "Air quality is moderate and only concern to people extra sensitive to ai pollution"
+            return "Air quality is moderate and only a concern to people extra sensitive to air pollution"
         case .sensitive:
-            return "Unhealthy for kids, pregnant women, elderly, active adults, and people with lung disease, asthma. Reduce strenuous outdoor activites."
+            return "Unhealthy for kids, pregnant women, elderly, active adults, and people with lung disease, asthma. Reduce strenuous outdoor activities."
         case .unhealthy:
-            return "Unhealthy for everyone, especially people with hearth or lung disease. Everyone should avoid strenuous outdoor activites and wear a mask."
+            return "Unhealthy for everyone, especially people with heart or lung disease. Everyone should avoid strenuous outdoor activities and wear a mask."
         case .veryUnhealthy:
-            return "Unhealthy for everyone, especially people with hearth or lung disease. Everyone should avoid physiscal outdoor activites and wear a mask."
+            return "Unhealthy for everyone, especially people with heart or lung disease. Everyone should avoid physical outdoor activities and wear a mask."
         case .hazardous:
-            return "Emergency conditions. Air is hazardous to everyone. Everyone should avoid ALL outdoor activites or wear a mask."
+            return "Emergency conditions. Air is hazardous to everyone. Everyone should avoid ALL outdoor activities or wear a mask."
         }
     }
     

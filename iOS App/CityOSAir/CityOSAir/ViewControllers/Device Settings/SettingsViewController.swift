@@ -166,7 +166,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SettingsTableViewCell
             (cell as! SettingsTableViewCell).configure()
             (cell as! SettingsTableViewCell).titleLabel.text = Text.Settings.notifyMe
-            (cell as! SettingsTableViewCell).subtitleLabel.text = "Good, Moderate, Unhealthy for sensitive, Unhealthy, Very unhelathy, Hazardous"
+            (cell as! SettingsTableViewCell).subtitleLabel.text = "Good, Moderate, Unhealthy for sensitive, Unhealthy, Very unhealthy, Hazardous"
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
@@ -197,7 +197,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
         case 1:
-            print("Notif")
+            self.navigationController?.pushViewController(AlertsViewController(), animated: true)
         case 2:
             handleLoginLogout()
         default:

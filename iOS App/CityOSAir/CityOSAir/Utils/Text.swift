@@ -128,7 +128,7 @@ struct Text {
         static let logout = "Logout"
         static let login = "Log into device"
         static let notificationsTitle = "Notifications"
-        static let notificationsDetail = "Recieve bad air alerts"
+        static let notificationsDetail = "Receive bad air alerts"
         static let notificationsOn = "On"
         static let notificationsOff = "Off"
         static let notifyMe = "Notify me when air is:"
