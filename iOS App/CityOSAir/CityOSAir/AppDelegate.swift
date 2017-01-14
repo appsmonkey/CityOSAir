@@ -147,6 +147,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Unable to connect with FCM. \(error)")
             } else {
                 print("Connected to FCM.")
+//                FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/all")
+                FIRMessaging.messaging().subscribe(toTopic: "/topics/broadcast")
             }
         }
     }
