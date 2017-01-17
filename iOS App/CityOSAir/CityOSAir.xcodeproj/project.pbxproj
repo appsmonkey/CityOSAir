@@ -137,7 +137,7 @@
 		777CD3481D742EE90011BDC2 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		777CD34A1D742F040011BDC2 /* ReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTableViewCell.swift; sourceTree = "<group>"; };
 		77868B181D78868E00CD2DBA /* Readings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readings.swift; sourceTree = "<group>"; };
-		778DD3591D73416600221A5B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateAccountViewController.swift; path = "Create Account/CreateAccountViewController.swift"; sourceTree = "<group>"; };
+		778DD3591D73416600221A5B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		77988AE11E1F9913003B951C /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		779DBFEF1D730A4500623FFE /* BigButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButtonTableViewCell.swift; sourceTree = "<group>"; };
 		779DBFF11D730BE200623FFE /* InputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
@@ -197,6 +197,7 @@
 		77065DEB1D74455700960AA5 /* Create Account */ = {
 			isa = PBXGroup;
 			children = (
+				778DD3591D73416600221A5B /* CreateAccountViewController.swift */,
 				77D0D6051D6F827200D7199C /* IntroViewController.swift */,
 			);
 			path = "Create Account";
@@ -326,10 +327,10 @@
 		779F11411E1270C800213ACC /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				77065DEB1D74455700960AA5 /* Create Account */,
 				77065DEC1D74458E00960AA5 /* Connect Device */,
-				778DD3591D73416600221A5B /* CreateAccountViewController.swift */,
 			);
-			name = Unused;
+			path = Unused;
 			sourceTree = "<group>";
 		};
 		779F11441E12763100213ACC /* ViewControllers@V2 */ = {
@@ -339,7 +340,7 @@
 				77C1AED31E12978400B2C384 /* MenuViewController.swift */,
 				77C52B1E1E156E6A00DCF615 /* AQIViewController.swift */,
 			);
-			name = "ViewControllers@V2";
+			path = "ViewControllers@V2";
 			sourceTree = "<group>";
 		};
 		77D0D5D81D6F822E00D7199C = {
@@ -401,7 +402,6 @@
 				77065DEF1D7445C100960AA5 /* Device Settings */,
 				77065DEE1D7445B500960AA5 /* Device Data Display */,
 				77065DED1D7445A500960AA5 /* Login */,
-				77065DEB1D74455700960AA5 /* Create Account */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

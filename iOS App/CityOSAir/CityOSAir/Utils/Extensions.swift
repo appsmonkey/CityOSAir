@@ -11,8 +11,6 @@ import SystemConfiguration.CaptiveNetwork
 
 import RealmSwift
 
-import RealmSwift
-
 extension Results {
     
     func toArray() -> [T] {
