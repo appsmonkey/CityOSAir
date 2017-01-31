@@ -29,6 +29,7 @@ enum MenuCells {
     case aqiPM10
     case aqiPM25
     case settings
+    case deviceRefresh
     
     var text: String {
         switch self {
@@ -46,6 +47,8 @@ enum MenuCells {
             return Text.Menu.aqiPM25
         case .settings:
             return Text.Menu.settings
+        case .deviceRefresh:
+            return Text.Menu.deviceRefresh
         }
     }
 }

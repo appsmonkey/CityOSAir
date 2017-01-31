@@ -7,22 +7,25 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DeviceInfoViewController: UIViewController {
-    
+        
     var device: Device? {
         didSet {
             guard let device = device else {
                 return
             }
             
-            header.text = device.identification
+            header.text = device.name.truncate(length: 30)
             
             if let oldDevice = oldValue {
                 if device.id == oldDevice.id {
                     return
                 }
             }
+            
+            timeStamp.text = ""
             
             refreshData()
         }
@@ -67,6 +70,8 @@ class DeviceInfoViewController: UIViewController {
     
     let header: UILabel = {
         let lbl = UILabel()
+        lbl.textAlignment = .center
+        lbl.adjustsFontSizeToFitWidth = true
         lbl.font = Styles.Detail.HeaderText.font
         lbl.textColor = Styles.Detail.HeaderText.tintColor
         return lbl
@@ -95,24 +100,36 @@ class DeviceInfoViewController: UIViewController {
             
             self.readings = Array(readingCollection.realmReadings)
             
+            if self.readings.count == 0 {
+                tableView.reloadData()
+                stopAnimatingLoading()
+                timeStamp.text = "No data to show"
+                circularGaugeView.refreshToInitial()
+                return
+            }
+            
             repositionPMs()
             
             tableView.reloadData()
             
             let formatter = DateFormatter()
+            formatter.timeZone = NSTimeZone(abbreviation: "GMT+0:00") as TimeZone!
             formatter.dateStyle = .short
             formatter.timeStyle = .short
             
             timeStamp.text = "\(Text.Readings.subtitle) \(formatter.string(from: readingCollection.lastUpdated))"
             
-            
-            let config = GaugeStates.getConfigForValue(pm10Value: readingCollection.getReadingValue(type: .pm10), pm25Value: readingCollection.getReadingValue(type: .pm25))
+            let gaugeConfig = GaugeStates.getConfigForValue(pm10Value: readingCollection.getReadingValue(type: .pm10), pm25Value: readingCollection.getReadingValue(type: .pm25))
             
             stopAnimatingLoading()
 
-            circularGaugeView.configureWith(config: config)
+            circularGaugeView.configureWith(config: gaugeConfig.config)
+            
+            aqiType = gaugeConfig.aqiType
         }
     }
+    
+    var aqiType: AQIType? = nil
     
     let loadingGif = UIImage.gif(name: "CityOS_Air_Loading")
     
@@ -135,7 +152,7 @@ class DeviceInfoViewController: UIViewController {
         super.viewDidLoad()
         
         self.slideMenuController()?.delegate = self
-        
+                
         view.backgroundColor = .white
         
         refreshControl.addTarget(self, action: #selector(DeviceInfoViewController.refresh(_:)), for: .valueChanged)
@@ -145,6 +162,21 @@ class DeviceInfoViewController: UIViewController {
         setUI()
         
         menuBtn.addTarget(self, action: #selector(DeviceInfoViewController.openMenu), for: .touchUpInside)
+        
+        circularGaugeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(DeviceInfoViewController.openAQIIndex)))
+    
+        refreshData()
+    }
+    
+    func openAQIIndex() {
+        
+        guard let aqiType = self.aqiType else {
+            return
+        }
+        
+        let aqiVC = AQIViewController()
+        aqiVC.aqiType = aqiType
+        self.show(aqiVC, sender: self)
     }
     
     fileprivate func setUI() {
@@ -185,13 +217,16 @@ class DeviceInfoViewController: UIViewController {
         
         view.addConstraint(NSLayoutConstraint(item: timeStamp, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0))
         
+        view.addConstraintsWithFormat("[v0]-10-[v1]-10-[v2]", views: menuBtn, header, mapBtn)
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         
-        refreshData()
+//        refreshData()
     }
     
     func refreshData() {
@@ -215,9 +250,7 @@ class DeviceInfoViewController: UIViewController {
     func refresh(_ sender: UIRefreshControl) {
         sender.isEnabled = false
 
-        circularGaugeView.isHidden = true
-        loadingImageView.isHidden = false
-        loadingImageView.startAnimating()
+        startAnimatingLoading()
         
         if let deviceID = device?.id {
             AirService.latestReadings(deviceID) { [weak self] (success, message, readingCollection) in
@@ -247,42 +280,55 @@ extension DeviceInfoViewController: UITableViewDelegate, UITableViewDataSource {
         
         let reading = readings[(indexPath as NSIndexPath).row]
         
+        let cell: UITableViewCell!
+        
+        let shouldDisable = device?.id ?? 0 == 0 ? true : false
+        
         if reading.readingType == .pm25 || reading.readingType == .pm10 {
             
             let aqiType = reading.readingType == .pm25 ? AQIType.pm25 : AQIType.pm10
             
             let aqi = AQI.getAQIForTypeWithValue(value: reading.value.roundTo(places: 1), aqiType: aqiType)
             
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ExtendedReadingTableViewCell
+            cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ExtendedReadingTableViewCell
             
-            cell.configure(reading.readingType!, aqi: aqi ,value: "\(reading.value.roundTo(places: 1))")
+            (cell as! ExtendedReadingTableViewCell).configure(reading.readingType!, aqi: aqi ,value: "\(reading.value.roundTo(places: 1))")
             
-            //remove later
-            cell.selectionStyle = .none
-            
-            return cell
+            (cell as! ExtendedReadingTableViewCell).rightArrow.isHidden = shouldDisable 
+
         }else {
             
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ReadingTableViewCell
+            cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ReadingTableViewCell
             
-            cell.configure(reading.readingType!, value: "\(reading.value.roundTo(places: 1))")
-           
-            //remove later
-            cell.selectionStyle = .none
+            (cell as! ReadingTableViewCell).configure(reading.readingType!, value: "\(reading.value.roundTo(places: 1))")
             
-            return cell
+            (cell as! ReadingTableViewCell).rightArrow.isHidden = shouldDisable
         }
+        
+        if shouldDisable {
+            cell.selectionStyle = .none
+        }else {
+            cell.selectionStyle = .default
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if device?.id ?? 0 == 0 {
+            return
+        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
-//        let graphVC = GraphViewController()
-//        
-//        graphVC.reading = readings[(indexPath as NSIndexPath).row]
-//        
-//        present(graphVC, animated: true, completion: nil)
+        let graphVC = GraphViewController()
+        
+        graphVC.deviceId = device?.id
+        
+        graphVC.reading = readings[(indexPath as NSIndexPath).row]
+                
+        present(graphVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

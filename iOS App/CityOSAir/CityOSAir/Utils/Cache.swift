@@ -9,9 +9,15 @@
 import Foundation
 import RealmSwift
 
+protocol CacheUsable: class {
+    func didUpdateDeviceCache()
+}
+
 final class Cache {
 
     static let sharedCache = Cache()
+
+    weak var delegate: CacheUsable?
     
     fileprivate init() {}
     
@@ -55,15 +61,22 @@ final class Cache {
             var deviceCollection = deviceCollection
             
             let defDevice = Device()
-            defDevice.identification = Text.Readings.title
+            defDevice.name = Text.Readings.title
             defDevice.id = 0
             
             deviceCollection.append(defDevice)
             
             let realm = try Realm()
             
+            let realmDevices = realm.objects(Device.self).filter("id != %d", 0)
+            
             try realm.write {
+                
+                realm.delete(realmDevices)
+                
                 realm.add(deviceCollection, update: true)
+                
+                delegate?.didUpdateDeviceCache()
             }
             
             return
@@ -86,12 +99,34 @@ final class Cache {
         }
     }
     
-    func getDeviceForIdentifier(identifier: String) -> Device? {
+    func getDeviceForName(name: String) -> Device? {
         do {
             
             let realm = try Realm()
             
-            return realm.objects(Device.self).filter("identification = %@", identifier).first
+            if let realmDevice = realm.objects(Device.self).filter("name = %@", name).first {
+            
+                let device = Device()
+                
+                device.active = realmDevice.active
+                device.addOn = realmDevice.addOn
+                device.editOn = realmDevice.editOn
+                device.groupId = realmDevice.groupId
+                device.id = realmDevice.id
+                device.identification = realmDevice.identification
+                device.indoor = realmDevice.indoor
+                device.latitude = realmDevice.latitude
+                device.longitude = realmDevice.longitude
+                device.location = realmDevice.location
+                device.model = realmDevice.model
+                device.name = realmDevice.name
+                device.schemaId = realmDevice.schemaId
+                device.userId = realmDevice.userId
+            
+                return device
+            }
+            
+            return nil
             
         } catch {
             print(error)

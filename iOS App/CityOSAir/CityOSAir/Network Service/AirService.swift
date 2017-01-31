@@ -27,9 +27,9 @@ class AirService {
                 }else {
                     if statusCode == 401 {
                         completion(false, "Please check your password", nil)
-                    }else if  statusCode == 404 {
+                    } else if  statusCode == 404 {
                         completion(false, "Please check your email", nil)
-                    }else {
+                    } else {
                         completion(false, "Something went wrong", nil)
                     }
                 }
@@ -132,14 +132,20 @@ class AirService {
                         
                         var readings = [Reading]()
                         
-                        for i in Array(1...11) {
+//                        Array(1...11)
+                        for i in [1,2,3,4,5,6] {
                             
                             if let value = json["\(i)"].double {
                                 readings.append(Reading(type: i, value: value))
                             }
                         }
                         
-                        readingCollection = ReadingCollection(lastUpdated: Date(), readings: readings, deviceId: deviceID)
+                        if let date = json["timestamp"].stringValue.dateFromString() {
+                            readingCollection = ReadingCollection(lastUpdated: date, readings: readings, deviceId: deviceID)
+                        }else {
+                            readingCollection = ReadingCollection(lastUpdated: Date(), readings: readings, deviceId: deviceID)
+                        }
+                        
                         
                         if let readingCollection = readingCollection {
                             Cache.sharedCache.saveReadingCollection(readingCollection: readingCollection)

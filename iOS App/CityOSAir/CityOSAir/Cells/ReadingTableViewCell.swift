@@ -37,6 +37,12 @@ class ReadingTableViewCell: UITableViewCell {
         return lbl
     }()
     
+    let rightArrow: UIImageView = {
+        let img = UIImageView(image: UIImage(named: "map-detail-arrow"))
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
@@ -57,6 +63,7 @@ class ReadingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
     func configure(_ readingType: ReadingType, value: String) {
         typeImage.image = UIImage(named: readingType.image)
         readingLabel.text = value
@@ -76,9 +83,6 @@ class ReadingTableViewCell: UITableViewCell {
     fileprivate func initialize() {
         
         backgroundColor = .clear
-        
-        let rightArrow = UIImageView(image: UIImage(named: "map-detail-arrow"))
-        rightArrow.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(rightArrow)
         contentView.addSubview(typeImage)

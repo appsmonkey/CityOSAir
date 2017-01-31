@@ -44,6 +44,12 @@ class ExtendedReadingTableViewCell: UITableViewCell {
         return lbl
     }()
     
+    let rightArrow: UIImageView = {
+        let img = UIImageView(image: UIImage(named: "map-detail-arrow"))
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
+    
     var identifierYConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
@@ -97,9 +103,6 @@ class ExtendedReadingTableViewCell: UITableViewCell {
     fileprivate func initialize() {
         
         backgroundColor = .clear
-        
-        let rightArrow = UIImageView(image: UIImage(named: "map-detail-arrow"))
-        rightArrow.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(rightArrow)
         contentView.addSubview(typeImage)

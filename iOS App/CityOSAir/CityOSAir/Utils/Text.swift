@@ -17,7 +17,7 @@ struct Text {
         static let aqiPM10 = "PM₁₀ Index"
         static let aqiPM25 = "PM2.5 Index"
         static let settings = "Settings"
-
+        static let deviceRefresh = "Refresh Devices"
     }
     
     struct Buttons {

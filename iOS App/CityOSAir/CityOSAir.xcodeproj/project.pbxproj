@@ -67,6 +67,7 @@
 		77DB9A991E1EE1EF004DFF3C /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */; };
 		77DB9A9B1E1EE24B004DFF3C /* CircularGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */; };
 		77DB9A9D1E1EF724004DFF3C /* GaugeStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */; };
+		77EBACA11E37EC8300E53631 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBACA01E37EC8300E53631 /* PaddedLabel.swift */; };
 		77ED20D81E2245E000F09B5D /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */; };
 		77ED20DA1E224A4C00F09B5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */; };
 		77ED20FC1E229C8A00F09B5D /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED20FB1E229C8A00F09B5D /* SwitchTableViewCell.swift */; };
@@ -166,6 +167,7 @@
 		77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
 		77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularGaugeView.swift; sourceTree = "<group>"; };
 		77DB9A9C1E1EF724004DFF3C /* GaugeStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeStates.swift; sourceTree = "<group>"; };
+		77EBACA01E37EC8300E53631 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		77ED20D71E2245E000F09B5D /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		77ED20D91E224A4C00F09B5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77ED20DB1E2263D100F09B5D /* CityOSAir.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CityOSAir.entitlements; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				776E62E41E089B5200A9372A /* BalloonMarker.swift */,
 				77DB9A981E1EE1EF004DFF3C /* KDCircularProgress.swift */,
 				77DB9A9A1E1EE24B004DFF3C /* CircularGaugeView.swift */,
+				77EBACA01E37EC8300E53631 /* PaddedLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				77D2E2EA1D72EBE000D012BC /* Extensions.swift in Sources */,
 				7768EF4D1DCF6CE500AC1775 /* ReadingCollection.swift in Sources */,
 				77206B941D781B2F00D77312 /* API.swift in Sources */,
+				77EBACA11E37EC8300E53631 /* PaddedLabel.swift in Sources */,
 				77206B9A1D7824B700D77312 /* AirService.swift in Sources */,
 				77DB9A991E1EE1EF004DFF3C /* KDCircularProgress.swift in Sources */,
 				774706041D738191005D4E3E /* SmallButtonTableViewCell.swift in Sources */,

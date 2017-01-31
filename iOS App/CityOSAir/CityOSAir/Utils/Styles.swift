@@ -70,22 +70,22 @@ struct Styles {
         
         struct HeaderText {
             static let font = UIFont.appRegularWithSize(16.5)
-            static let tintColor = Colors.white
-        }
-        
-        struct SubtitleText {
-            static let font = UIFont.appRegularWithSize(8)
-            static let tintColor = Colors.white
+            static let subscriptFont = UIFont.appRegularWithSize(16.5/2)
+            static let tintColor = UIColor.fromHex("4d4d4d")
         }
         
         struct ReadingLabel {
             static let font = UIFont.appUltraThinWithSize(51)
-            static let tintColor = Colors.white
+            static let subscriptFont = UIFont.appRegularWithSize(51/5)
+            static let subscriptColor = UIColor.fromHex("b2b2b2")
+            static let tintColor = UIColor.fromHex("4d4d4d")
         }
         
         struct GraphLabels {
             static let font = UIFont.appRegularWithSize(6.88)
-            static let tintColor = Colors.white.withAlphaComponent(0.71)
+            static let tintColor = UIColor.fromHex("cccccc")
+            static let lineColor = UIColor.fromHex("efefef")
+            static let textColor = UIColor.fromHex("9e9e9e")
         }
     }
     
@@ -171,6 +171,28 @@ struct Styles {
         static let white = UIColor.white
         static let gradientTop = UIColor.fromHex("15b2ba")
         static let gradientBottom = UIColor.fromHex("39b2cf")
+    }
+    
+    struct GraphColors {
+        
+        static let defaultGradientColors = [UIColor.fromHex("01bcf3").cgColor,
+                                            UIColor.fromHex("01ead4").cgColor]
+        
+        static let defaultGradientLocations: [CGFloat] = [1.0, 0.0]
+        
+        static let pmGradientColors = [UIColor.fromHex("e80009").cgColor,
+                                     UIColor.fromHex("d524a8").cgColor,
+                                     UIColor.fromHex("ff7930").cgColor,
+                                     UIColor.fromHex("ffe934").cgColor,
+                                     UIColor.fromHex("73c84e").cgColor,
+                                     UIColor.fromHex("03d2e2").cgColor]
+        
+        static let pmGradientLocations: [CGFloat] = [1.0,
+                                        0.8,
+                                        0.6,
+                                        0.4,
+                                        0.2,
+                                        0.0]
     }
     
     static func cellHeight(_ cellType: CellType) -> CGFloat {

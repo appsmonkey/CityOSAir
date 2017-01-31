@@ -8,7 +8,7 @@
 
 open class API {
     
-    open static let baseURL = "http://api.cityos.io/"
+    open static let baseURL = "https://ctos.io/"//"http://api.ctos.io/"
     
     public enum Endpoints {
         

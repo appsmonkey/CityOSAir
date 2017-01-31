@@ -26,17 +26,20 @@ class MenuViewController: UIViewController {
         table.tableFooterView = UIView()
         table.separatorStyle = .none
         table.alwaysBounceVertical = false
+        table.bounces = false
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = .clear
         return table
     }()
     
     var first = [MenuCells.cityAir] //MenuCells.cityMap
-    var second = [MenuCells.aqiPM10, MenuCells.aqiPM25, MenuCells.settings]
+    var second = [MenuCells.aqiPM10, MenuCells.aqiPM25, MenuCells.settings, MenuCells.deviceRefresh]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .black
+        
+        Cache.sharedCache.delegate = self
         
         setupSections()
         
@@ -51,21 +54,24 @@ class MenuViewController: UIViewController {
     fileprivate func setupSections() {
         
         first = [MenuCells.cityAir]
-        second = [MenuCells.aqiPM10, MenuCells.aqiPM25, MenuCells.settings]
+        second = [MenuCells.aqiPM10, MenuCells.aqiPM25, MenuCells.settings, MenuCells.deviceRefresh]
         
         if let _ = UserManager.sharedInstance.getLoggedInUser(), let devices = Cache.sharedCache.getDeviceCollection()  {
             for device in devices {
                 
-                if device.identification == MenuCells.cityAir.text {
+                if device.name == MenuCells.cityAir.text {
                     continue
                 }
                 
-                first.append(MenuCells.cityDevice(name: device.identification))
-                first.reverse()
+                if device.active {
+                    first.append(MenuCells.cityDevice(name: device.name))
+                }
             }
         } else {
             second.insert(MenuCells.logIn, at: 0)
         }
+        
+        first.reverse()
     }
     
     fileprivate func setUI() {
@@ -127,6 +133,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.textColor = Styles.MenuButtonSmall.tintColor
         }
         
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
         cell.accessoryType = .none
 
         
@@ -137,17 +144,19 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.section == 0 {
             
+            let text = first[indexPath.row].text.truncate(length: 30)
+            
             guard let current = self.slideMenuController()?.mainViewController as? DeviceInfoViewController, let title = current.header.text else {
                 
-                cell.textLabel?.text = first[indexPath.row].text
+                cell.textLabel?.text = text
                 return
             }
             
-            if title == first[indexPath.row].text {
+            if title == text {
                 cell.textLabel?.textColor = Styles.MenuButtonBig.choosenTintColor
             }
             
-            cell.textLabel?.text = first[indexPath.row].text
+            cell.textLabel?.text = text
 
         }else {
             
@@ -198,6 +207,8 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
             transitionToDevice(name: name)
         case .cityAir:
             transitionToDevice(name: Text.Readings.title)
+        case .deviceRefresh:
+            refreshDevices()
         default:
             break
         }
@@ -205,15 +216,39 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func transitionToDevice(name: String) {
         
-        guard let device = Cache.sharedCache.getDeviceForIdentifier(identifier: name) ,let current = self.slideMenuController()?.mainViewController as? DeviceInfoViewController else {
+        guard let device = Cache.sharedCache.getDeviceForName(name: name) ,let current = self.slideMenuController()?.mainViewController as? DeviceInfoViewController else {
             return
         }
+        
         current.device = device
         
         closePressed()
     }
     
+    fileprivate func refreshDevices() {
+        
+        self.startLoading("Pulling new device data...", nil)
+        
+        AirService.device({ (success, message, devices) in
+            if success {
+                if let devices = devices {
+                    Cache.sharedCache.saveDevices(deviceCollection: devices)
+                }
+            }
+            
+            self.stopLoading()
+        })
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? Styles.cellHeight(CellType.email) : 45
+    }
+}
+
+extension MenuViewController: CacheUsable {
+    func didUpdateDeviceCache() {
+        print("Delegate Called")
+        setupSections()
+        tableView.reloadData()
     }
 }

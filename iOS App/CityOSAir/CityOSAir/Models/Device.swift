@@ -10,7 +10,7 @@ import RealmSwift
     
 class Device: Object {
         
-    dynamic var active : Int = 0
+    dynamic var active : Bool = false
     dynamic var addOn : String = ""
     dynamic var editOn : String = ""
     dynamic var groupId : Int = 0
@@ -22,6 +22,8 @@ class Device: Object {
     dynamic var model : String = ""
     dynamic var schemaId : Int = 0
     dynamic var userId : Int = 0
+    dynamic var indoor: Bool = false
+    dynamic var name: String = ""
     
     convenience init(fromJson json: JSON!) {
         self.init()
@@ -29,7 +31,7 @@ class Device: Object {
         if json.isEmpty{
             return
         }
-        active = json["active"].intValue
+        active = json["active"].boolValue
         addOn = json["addOn"].stringValue
         editOn = json["editOn"].stringValue
         groupId = json["groupId"].intValue
@@ -45,7 +47,9 @@ class Device: Object {
         schemaId = json["schemaId"].intValue
         userId = json["userId"].intValue
         
-        identification = "John's Device"
+        identification = json["identification"].stringValue
+        indoor = json["indoor"].boolValue
+        name = json["name"].stringValue
     }
     
     override static func primaryKey() -> String? {

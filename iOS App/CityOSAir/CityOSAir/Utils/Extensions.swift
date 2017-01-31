@@ -72,13 +72,23 @@ extension String {
         
         return nil
     }
+    
+    func truncate(length: Int, trailing: String = "…") -> String {
+        if self.characters.count > length {
+            return String(self.characters.prefix(length)) + trailing
+        } else {
+            return self
+        }
+    }
 }
 
 extension Date {
+    
     func toLocalTime() -> Date {
         let timezone: TimeZone = TimeZone.autoupdatingCurrent
         let seconds: TimeInterval = TimeInterval(timezone.secondsFromGMT(for: self))
-        return Date(timeInterval: seconds, since: self)
+        let local = Date(timeInterval: seconds, since: self)
+        return local
     }
     
     func isToday() -> Bool {

@@ -15,6 +15,7 @@ struct GaugeConfig {
     var ribbonText: String
     var ribbonImage: UIImage
     var centerImage: UIImage
+    var aqi: AQI
 }
 
 public class CircularGaugeView: UIView {
@@ -28,6 +29,8 @@ public class CircularGaugeView: UIView {
     }
     
     var maxValue: Double = 300.0
+    
+    var aqi: AQI? = nil
     
     fileprivate func setProgress(value: Double) {
         
@@ -43,7 +46,15 @@ public class CircularGaugeView: UIView {
     
     fileprivate func calculateProgressFor(value: Double) -> Double {
         
-        let percent = (value / maxValue) * 100
+        var valueToUse = value
+        
+        if let aqi = aqi {
+            
+            valueToUse = Double(aqi.rawValue)
+            maxValue = 6
+        }
+        
+        let percent = (valueToUse / maxValue) * 100
         
         let valueFromPercent = (304 / 100) * percent
         
@@ -143,6 +154,7 @@ public class CircularGaugeView: UIView {
     
     func configureWith(config: GaugeConfig) {
         progress.set(colors: config.progressColor)
+        self.aqi = config.aqi
         self.maxValue = config.maxValue
         self.value = config.progressValue
         self.ribbonText = config.ribbonText
@@ -151,6 +163,7 @@ public class CircularGaugeView: UIView {
     }
     
     func refreshToInitial() {
+        self.aqi = nil
         self.value = 0
         self.ribbonText = ""
         self.ribbonImage = nil
